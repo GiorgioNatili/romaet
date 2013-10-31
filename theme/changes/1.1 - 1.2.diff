@@ -1,0 +1,2507 @@
+Index: app/design/frontend/meigeetheme/default/template/checkout/cart/crosssell_big.phtml
+===================================================================
+--- app/design/frontend/meigeetheme/default/template/checkout/cart/crosssell_big.phtml	(.../1.1)	(revision 38)
++++ app/design/frontend/meigeetheme/default/template/checkout/cart/crosssell_big.phtml	(.../1.2)	(revision 38)
+@@ -39,7 +39,7 @@
+         <?php $current_crossel_item = 1; $crossel_items = count($this->getItems()); foreach ($this->getItems() as $_item): ?>
+             <li class="item grid_3 <?php if($current_crossel_item == 1){echo 'alpha';}elseif($current_crossel_item == $crossel_items){echo 'omega';} ?>">
+                 <div class="product-img-box">
+-					<a class="product-image" href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(290, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('crosssell_big', $_item); ?> width="290" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" /></a>
++					<a class="product-image" href="<?php echo $_item->getProductUrl() ?>" title="<?php echo $this->htmlEscape($_item->getName()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($_item, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(388, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('crosssell_big', $_item); ?> width="290" alt="<?php echo $this->htmlEscape($_item->getName()) ?>" /></a>
+ 				</div>
+ 				<h3 class="product-name"><a href="<?php echo $_item->getProductUrl() ?>"><?php echo $this->htmlEscape($_item->getName()) ?></a></h3>
+ 				<div class="product-details">
+Index: app/design/frontend/meigeetheme/default/template/checkout/cart/item/default.phtml
+===================================================================
+--- app/design/frontend/meigeetheme/default/template/checkout/cart/item/default.phtml	(.../1.1)	(revision 38)
++++ app/design/frontend/meigeetheme/default/template/checkout/cart/item/default.phtml	(.../1.2)	(revision 38)
+@@ -30,7 +30,7 @@
+ $canApplyMsrp = Mage::helper('catalog')->canApplyMsrp($_item->getProduct(), Mage_Catalog_Model_Product_Attribute_Source_Msrp_Type::TYPE_BEFORE_ORDER_CONFIRM);
+ ?>
+ <tr>
+-    <td><?php if ($this->hasProductUrl()):?><a href="<?php echo $this->getProductUrl() ?>" title="<?php echo $this->htmlEscape($this->getProductName()) ?>" class="product-image"><?php endif;?><img src="<?php echo $this->getProductThumbnail()->resize(120, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('cart_item_default', $this); ?> alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /><?php if ($this->hasProductUrl()):?></a><?php endif;?></td>
++    <td><?php if ($this->hasProductUrl()):?><a href="<?php echo $this->getProductUrl() ?>" title="<?php echo $this->htmlEscape($this->getProductName()) ?>" class="product-image"><?php endif;?><img src="<?php echo $this->getProductThumbnail()->resize(357, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('cart_item_default', $this); ?> alt="<?php echo $this->htmlEscape($this->getProductName()) ?>" /><?php if ($this->hasProductUrl()):?></a><?php endif;?></td>
+     <td>
+         <h2 class="product-name">
+         <?php if ($this->hasProductUrl()):?>
+Index: app/design/frontend/meigeetheme/default/template/checkout/cart/topcart.phtml
+===================================================================
+--- app/design/frontend/meigeetheme/default/template/checkout/cart/topcart.phtml	(.../1.1)	(revision 38)
++++ app/design/frontend/meigeetheme/default/template/checkout/cart/topcart.phtml	(.../1.2)	(revision 38)
+@@ -32,7 +32,7 @@
+ 
+ ?>
+ <?php $_cartQty = $this->getSummaryCount()? $this->getSummaryCount() : 0 ?>
+-<div class="top-cart<?php if($_cartQty==1){echo ' one-cart-item';}elseif($_cartQty==2){echo ' two-cart-items';}elseif($_cartQty>=3){echo ' three-cart-items';} ?>">
++<div class="top-cart<?php if($_cartQty==1){echo ' one-cart-item';}elseif($_cartQty==2){echo ' two-cart-items';}elseif($_cartQty>=3){echo ' three-cart-items';} if($_cartQty) {echo ' items-avaliable';} ?>">
+ <?php if ($this->getIsLinkMode() || !$this->getIsNeedToDisplaySideBar()):?>
+ 	<div class="block-title no-items">
+         <ul class="links cart-link">
+Index: app/design/frontend/meigeetheme/default/template/wishlist/sidebar.phtml
+===================================================================
+--- app/design/frontend/meigeetheme/default/template/wishlist/sidebar.phtml	(.../1.1)	(revision 38)
++++ app/design/frontend/meigeetheme/default/template/wishlist/sidebar.phtml	(.../1.2)	(revision 38)
+@@ -24,7 +24,7 @@
+             <?php $product = $_item->getProduct(); ?>
+             <li class="item">
+                 <a href="<?php echo $this->getProductUrl($_item) ?>" title="<?php echo $this->escapeHtml($product->getName()) ?>" class="product-image">
+-                    <img src="<?php echo $this->helper('catalog/image')->init($product, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(58, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('wishlist_sidebar_item', $_item); ?> alt="<?php echo $this->escapeHtml($product->getName()) ?>" />
++                    <img src="<?php echo $this->helper('catalog/image')->init($product, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(58, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('wishlist_sidebar_item', $product); ?> alt="<?php echo $this->escapeHtml($product->getName()) ?>" />
+                 </a>
+                 <div class="product-details">
+                     <a href="<?php echo $this->getItemRemoveUrl($_item) ?>" title="<?php echo $this->__('Remove This Item') ?>" onclick="return confirm('<?php echo $this->__('Are you sure you would like to remove this item from the wishlist?') ?>');" class="btn-remove"><?php echo $this->__('Remove This Item') ?></a>
+Index: app/design/frontend/meigeetheme/default/template/catalog/product/list.phtml
+===================================================================
+--- app/design/frontend/meigeetheme/default/template/catalog/product/list.phtml	(.../1.1)	(revision 38)
++++ app/design/frontend/meigeetheme/default/template/catalog/product/list.phtml	(.../1.2)	(revision 38)
+@@ -40,51 +40,53 @@
+ 			}
+ 		?>
+         <li class="item<?php if( ++$_iterator == sizeof($_productCollection) ): ?> last<?php endif; ?><?php if($isKeyAvaliable == true){echo ' onsale';} ?>">
+-            <?php /* Label New */ echo MAGE::helper('ThemeOptions')->getProductLabels($_product); ?>
+-            <?php // Product Image ?>
+-            <div class="grid_3 alpha">
+-                <div class="product-img-box">
+-                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(290, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('list', $_product); ?>  alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptions')->getHoverImage($_product, 290, 580); ?></div></a>
+-                    <?php // Fancybox
+-                    if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
+-                        <a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>">&nbsp;</a>
+-                    <?php endif; // End Fancybox ?>                    
+-                </div>
+-            </div>
+-            <?php // Product description ?>
+-            <div class="grid_6 omega">
+-                <div class="list-container">
+-					<div class="indent">
+-						<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></h2>
+-						<?php echo $this->getPriceHtml($_product, true) ?>
+-						<?php if($_product->getRatingSummary()): ?>
+-						<?php echo $this->getReviewsSummaryHtml($_product) ?>
+-						<?php endif; ?>
+-						<?php if(!$_product->isSaleable()): ?>
+-							<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+-						<?php endif; ?>
+-						<div class="clear"></div>                
+-						<div class="desc std">
+-							<?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
+-							<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
+-						</div>
++            <div class="product-box">
++				<?php /* Label New */ echo MAGE::helper('ThemeOptions')->getProductLabels($_product); ?>
++				<?php // Product Image ?>
++				<div class="grid_3 alpha">
++					<div class="product-img-box">
++						<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(290, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('list', $_product); ?>  alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptions')->getHoverImage($_product, 290, 580); ?></div></a>
++						<?php // Fancybox
++						if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
++							<a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>">&nbsp;</a>
++						<?php endif; // End Fancybox ?>                    
+ 					</div>
+-					<div class="actions">
+-						<ul class="add-to-links">
+-							<?php if ($this->helper('wishlist')->isAllow()) : ?>
+-								<li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
++				</div>
++				<?php // Product description ?>
++				<div class="grid_6 omega">
++					<div class="list-container">
++						<div class="indent">
++							<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $_helper->productAttribute($_product, $_product->getName() , 'name'); ?></a></h2>
++							<?php echo $this->getPriceHtml($_product, true) ?>
++							<?php if($_product->getRatingSummary()): ?>
++							<?php echo $this->getReviewsSummaryHtml($_product) ?>
+ 							<?php endif; ?>
+-							<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
+-								<li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
++							<?php if(!$_product->isSaleable()): ?>
++								<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+ 							<?php endif; ?>
+-						</ul>
+-						<?php if($_product->isSaleable()): ?>
+-							<p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>                                    
+-						<?php endif; ?>
+-						<div class="clear"></div>
++							<div class="clear"></div>                
++							<div class="desc std">
++								<?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
++								<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
++							</div>
++						</div>
++						<div class="actions">
++							<ul class="add-to-links">
++								<?php if ($this->helper('wishlist')->isAllow()) : ?>
++									<li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
++								<?php endif; ?>
++								<?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
++									<li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
++								<?php endif; ?>
++							</ul>
++							<?php if($_product->isSaleable()): ?>
++								<p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>                                    
++							<?php endif; ?>
++							<div class="clear"></div>
++						</div>
+ 					</div>
+ 				</div>
+-            </div>
++			</div>
+         </li>
+     <?php endforeach; ?>
+     </ol>
+@@ -112,25 +114,27 @@
+ 				}
+ 			?>
+             <li class="grid_3 item<?php if($isKeyAvaliable == true){echo ' onsale';} ?>">
+-                <div class="product-img-box">
+-					<?php /* Label New */ echo MAGE::helper('ThemeOptions')->getProductLabels($_product); ?>
+-					<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(420, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('grid_large', $_product); ?> alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptions')->getHoverImage($_product, 420, 840); ?></div></a>
+-					<?php  // Fancybox
+-					if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
+-							<a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>">&nbsp;</a>
+-						<?php endif;
+-					// End Fancybox ?>
++                <div class="product-box">
++					<div class="product-img-box">
++						<?php /* Label New */ echo MAGE::helper('ThemeOptions')->getProductLabels($_product); ?>
++						<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(420, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('grid_large', $_product); ?> alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptions')->getHoverImage($_product, 420, 840); ?></div></a>
++						<?php  // Fancybox
++						if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
++								<a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>">&nbsp;</a>
++							<?php endif;
++						// End Fancybox ?>
++					</div>
++					<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>                        
++					<div class="actions">
++						<?php if($_product->isSaleable()): ?>
++							<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
++						<?php else: ?>
++							<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
++						<?php endif; ?>
++						<?php echo $this->getPriceHtml($_product, true) ?>
++						<div class="clear"></div>
++					</div>
+ 				</div>
+-				<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>                        
+-				<div class="actions">
+-					<?php if($_product->isSaleable()): ?>
+-						<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+-					<?php else: ?>
+-						<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+-					<?php endif; ?>
+-					<?php echo $this->getPriceHtml($_product, true) ?>
+-					<div class="clear"></div>
+-				</div>
+             </li>
+         <?php endforeach ?>
+         </ul>
+@@ -150,25 +154,27 @@
+ 				}
+ 			?>
+             <li class="grid_3 item<?php if($isKeyAvaliable == true){echo ' onsale';} ?>">
+-				<div class="product-img-box">
+-					<?php /* Label New */ echo MAGE::helper('ThemeOptions')->getProductLabels($_product); ?>
+-					<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(290, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('grid', $_product); ?> alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptions')->getHoverImage($_product, 290, 580); ?></div></a>
+-					<?php  // Fancybox
+-					if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
+-							<a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>">&nbsp;</a>
+-						<?php endif;
+-					// End Fancybox ?>
++				<div class="product-box">
++					<div class="product-img-box">
++						<?php /* Label New */ echo MAGE::helper('ThemeOptions')->getProductLabels($_product); ?>
++						<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(290, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('grid', $_product); ?> alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptions')->getHoverImage($_product, 290, 580); ?></div></a>
++						<?php  // Fancybox
++						if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
++								<a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>">&nbsp;</a>
++							<?php endif;
++						// End Fancybox ?>
++					</div>
++					<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>                        
++					<div class="actions">
++						<?php if($_product->isSaleable()): ?>
++							<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
++						<?php else: ?>
++							<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
++						<?php endif; ?>
++						<?php echo $this->getPriceHtml($_product, true) ?>
++						<div class="clear"></div>
++					</div>
+ 				</div>
+-				<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>                        
+-				<div class="actions">
+-					<?php if($_product->isSaleable()): ?>
+-						<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+-					<?php else: ?>
+-						<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+-					<?php endif; ?>
+-					<?php echo $this->getPriceHtml($_product, true) ?>
+-					<div class="clear"></div>
+-				</div>
+             </li>
+             <?php $i++; endforeach ?>
+         </ul>
+@@ -188,25 +194,27 @@
+ 				}
+ 			?>
+             <li class="item<?php if($isKeyAvaliable == true){echo ' onsale';} ?>">
+-                <div class="product-img-box">
+-					<?php /* Label New */ echo MAGE::helper('ThemeOptions')->getProductLabels($_product); ?>
+-					<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(160, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('grid_small', $_product); ?> alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptions')->getHoverImage($_product, 160, 320); ?></div></a>
+-					<?php  // Fancybox
+-					if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
+-							<a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>">&nbsp;</a>
+-						<?php endif;
+-					// End Fancybox ?>
++                <div class="product-box">
++					<div class="product-img-box">
++						<?php /* Label New */ echo MAGE::helper('ThemeOptions')->getProductLabels($_product); ?>
++						<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(160, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('grid_small', $_product); ?> alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptions')->getHoverImage($_product, 160, 320); ?></div></a>
++						<?php  // Fancybox
++						if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
++								<a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>">&nbsp;</a>
++							<?php endif;
++						// End Fancybox ?>
++					</div>
++					<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>                        
++					<div class="actions">
++						<?php if($_product->isSaleable()): ?>
++							<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
++						<?php else: ?>
++							<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
++						<?php endif; ?>
++						<?php echo $this->getPriceHtml($_product, true) ?>
++						<div class="clear"></div>
++					</div>
+ 				</div>
+-				<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>                        
+-				<div class="actions">
+-					<?php if($_product->isSaleable()): ?>
+-						<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+-					<?php else: ?>
+-						<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+-					<?php endif; ?>
+-					<?php echo $this->getPriceHtml($_product, true) ?>
+-					<div class="clear"></div>
+-				</div>
+             </li>
+         <?php endforeach ?>
+         </ul>
+Index: app/design/frontend/meigeetheme/default/template/catalog/product/view/media.phtml
+===================================================================
+--- app/design/frontend/meigeetheme/default/template/catalog/product/view/media.phtml	(.../1.1)	(revision 38)
++++ app/design/frontend/meigeetheme/default/template/catalog/product/view/media.phtml	(.../1.2)	(revision 38)
+@@ -64,7 +64,7 @@
+ <div class="more-views-container">
+     <div class="more-views">
+         <h2><?php echo $this->__('More Views') ?></h2>
+-        <?php if ($productpage_moreviews == 'moreviews_slider' && count($this->getGalleryImages()) > 3): ?>
++        <?php if ($productpage_moreviews == 'moreviews_slider' && count($this->getGalleryImages()) > 6): ?>
+         <div id="more-views-slider" class="es-carousel-wrapper">
+             <ul class="carousel-ul">
+             <?php foreach ($this->getGalleryImages() as $_image): ?>
+Index: app/design/frontend/meigeetheme/default/template/catalog/product/list/related.phtml
+===================================================================
+--- app/design/frontend/meigeetheme/default/template/catalog/product/list/related.phtml	(.../1.1)	(revision 38)
++++ app/design/frontend/meigeetheme/default/template/catalog/product/list/related.phtml	(.../1.2)	(revision 38)
+@@ -17,7 +17,7 @@
+     </header>
+ 	<p class="block-subtitle"><?php echo $this->__('Check items to add to the cart or') ?>&nbsp;<a href="#" onclick="selectAllRelated(this); return false;"><?php echo $this->__('select all') ?></a></p>
+     <div class="block-content">
+-        <div <?php if ($productpage_collateral_related == 'related_slider' && count($this->getItems())>4): ?>id="block-related-slider"<?php else:?> class="no-slider" <?php endif; ?>>
++        <div <?php if ($productpage_collateral_related == 'related_slider' && count($this->getItems())>6): ?>id="block-related-slider"<?php else:?> class="no-slider" <?php endif; ?>>
+             <ul class="carousel-ul">
+             <?php $i=0; foreach($this->getItems() as $_item): ?>
+                 <li class="item">
+@@ -41,7 +41,7 @@
+             <?php $i++; endforeach ?>
+             </ul>
+         </div>
+-		<?php if ($productpage_collateral_related == 'related_slider' && count($this->getItems())>4): ?>
++		<?php if ($productpage_collateral_related == 'related_slider' && count($this->getItems())>6): ?>
+ 		<div class = 'next'></div>
+ 		<div class = 'prev unselectable'></div>
+ 		<?php endif; ?>
+Index: app/design/frontend/meigeetheme/default/template/page/html/head.phtml
+===================================================================
+--- app/design/frontend/meigeetheme/default/template/page/html/head.phtml	(.../1.1)	(revision 38)
++++ app/design/frontend/meigeetheme/default/template/page/html/head.phtml	(.../1.2)	(revision 38)
+@@ -12,7 +12,7 @@
+ $appearance = MAGE::helper('ThemeOptions')->getThemeOptions('appearance');
+ /*****/
+ ?>
+-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
++<?php echo MAGE::helper('ThemeOptions')->getThemeOptions('user-scalable'); ?>
+ <meta http-equiv="Content-Type" content="<?php echo $this->getContentType() ?>" />
+ <title><?php echo $this->getTitle() ?></title>
+ <meta name="description" content="<?php echo htmlspecialchars($this->getDescription()) ?>" />
+@@ -262,8 +262,15 @@
+ 	.small-slider .small-slider-text-box .price-box,
+ 	header#header .menu-button,
+ 	aside.sidebar section.active header .sidebar-block-button,
+-	aside.sidebar section.block-layered-nav .btn-remove{background-color:#<?php echo $appearance['maincolor']; ?>;}
++	aside.sidebar section.block-layered-nav .btn-remove,
++	#nav ul li.touched,
++	#nav ul li.over,
++	#nav ul li.active,
++	#nav ul,
++	#nav div{background-color:#<?php echo $appearance['maincolor']; ?>;}
+ 	
++	.nav-wide#nav ul.level0,
++	.nav-wide#nav .static-wrapper,
+ 	.my-wishlist input.quantity-decrease:hover,
+ 	.my-wishlist input.quantity-increase:hover,
+ 	.add-to-cart input.quantity-decrease:hover,
+@@ -273,8 +280,6 @@
+ 	#nav ul,
+ 	#nav div{
+ 		background-color:rgba(<?php echo HexToRGB($appearance['maincolor']); ?>, 0.9);
+-		filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#E6<?php echo $appearance['maincolor']; ?>,endColorstr=#E6<?php echo $appearance['maincolor']; ?>);
+-		zoom: 1;
+ 	}
+ 
+ 
+Index: app/design/frontend/meigeetheme/default/template/meigee/headerslider.phtml
+===================================================================
+--- app/design/frontend/meigeetheme/default/template/meigee/headerslider.phtml	(.../1.1)	(revision 38)
++++ app/design/frontend/meigeetheme/default/template/meigee/headerslider.phtml	(.../1.2)	(revision 38)
+@@ -47,13 +47,13 @@
+ 							}
+ 						?>
+ 					</div>
+-					<div class="container_12 nav-buttons">
++					<div class="nav-buttons">
+ 						<div class = 'next'>&nbsp;</div>
+ 						<div class = 'prev unselectable'>&nbsp;</div>
+ 					</div>
+ 				</div>
+ 			</div>
+-			<div class="container_12 nav-buttons slider-narrow-buttons">
++			<div class="nav-buttons slider-narrow-buttons">
+ 				<div class = 'next'>&nbsp;</div>
+ 				<div class = 'prev unselectable'>&nbsp;</div>
+ 			</div>
+@@ -94,36 +94,19 @@
+ 		   if(jQuery('header.slider-narrow').length){
+ 				/* animation */
+ 				jQuery(args.sliderObject).find('h2').attr('style', '');
+-				
+-				if(jQuery(args.currentSlideObject).find('.right-caption').length){
+-					jQuery(args.currentSlideObject).find('h2').animate({
+-						right: '5%',
+-						opacity: '1'
+-					 }, 400, 'easeOutBack');
+-				}else{
+-					jQuery(args.currentSlideObject).find('h2').animate({
+-						left: '5%',
+-						opacity: '1'
+-					 }, 400, 'easeOutBack');
+-				 }
++				jQuery(args.currentSlideObject).find('h2').animate({
++					left: '5%',
++					opacity: '1'
++				 }, 400, 'easeOutBack');
+ 				 
+ 				jQuery(args.sliderObject).find('h3').attr('style', '');
+-				if(jQuery(args.currentSlideObject).find('.right-caption').length){
+-					jQuery(args.currentSlideObject).find('h3').animate({
+-						right: '5%',
+-						opacity: '1'
+-					}, 600, 'easeOutBack');
+-				}else{
+-					jQuery(args.currentSlideObject).find('h3').animate({
+-						left: '5%',
+-						opacity: '1'
+-					}, 600, 'easeOutBack');
+-				}
+-				
++				jQuery(args.currentSlideObject).find('h3').animate({
++					left: '5%',
++					opacity: '1'
++				}, 600, 'easeOutBack');
+ 		   }else{
+ 				/* animation */
+ 				jQuery(args.sliderObject).find('h2').attr('style', '');
+-				  
+ 				jQuery(args.currentSlideObject).find('h2').animate({
+ 					left: '50%',
+ 					opacity: '1'
+@@ -134,7 +117,7 @@
+ 					left: '50%',
+ 					opacity: '1'
+ 				}, 600, 'easeOutBack');
+-		   }  
++		   }
+ 	  }
+ 	
+ 	function sliderLoaded(args) {
+Index: app/design/frontend/meigeetheme/default/template/meigee/meigeewidgets/slider.phtml
+===================================================================
+--- app/design/frontend/meigeetheme/default/template/meigee/meigeewidgets/slider.phtml	(.../1.1)	(revision 38)
++++ app/design/frontend/meigeetheme/default/template/meigee/meigeewidgets/slider.phtml	(.../1.2)	(revision 38)
+@@ -1,16 +1,22 @@
+ <?php
+     $_productCollection = $this->getMyCollection();
+-    $category = $this->catName();
+-    $_helper = $this->helper('catalog/output');
+-    $_collectionSize = $this->productsAmount();
++	$gridMode = $this->sliderGridSelection();
++	$visibleProducts = $this->getData('visible_products');
++	$productCount = count($_productCollection);
++	if (count($_productCollection)) {
++	
++		$category = $this->catName();
++		$_helper = $this->helper('catalog/output');
++		$_collectionSize = $this->productsAmount();
+ 
+-    $randId = $this->getWidgetId();
+-    
+-    $fancybox = MAGE::helper('ThemeOptions')->getThemeOptions('fancybox' );
++		$randId = $this->getWidgetId();
++		
++		$fancybox = MAGE::helper('ThemeOptions')->getThemeOptions('fancybox' );
+ ?>
+ <?php // Slider ?>
+-<div class="container_12">
+-	<div class="grid_12">
++<div class="container_12 widget-slider-box">
++<?php if($productCount > $visibleProducts): ?>
++	<div class="<?php echo $gridMode; ?>">
+ 		<div class="slider-container widget-container">
+ 			<div class="home-container">
+ 				<div class="home-slider-conainer" id="home-slider-<?php echo $randId; ?>">
+@@ -29,25 +35,27 @@
+ 								?>
+ 								<li class="item<?php if($isKeyAvaliable == true){echo ' onsale';} ?>">
+ 									<div class="indent">
+-										<div class="product-img-box">
+-											<?php /* Label New */ echo MAGE::helper('ThemeOptions')->getProductLabels($_product); ?>
+-											<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(275, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('widget_slider', $_product); ?> alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptions')->getHoverImage($_product, 275, 550); ?></div></a>
+-											<?php  // Fancybox
+-											if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
+-													<a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>">&nbsp;</a>
+-												<?php endif;
+-											// End Fancybox ?>
++										<div class="product-box">
++											<div class="product-img-box">
++												<?php /* Label New */ echo MAGE::helper('ThemeOptions')->getProductLabels($_product); ?>
++												<a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" class="product-image"><div class="hover-box"><img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(275, null); ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('widget_slider', $_product); ?> alt="<?php echo $this->stripTags($this->getImageLabel($_product, 'small_image'), null, true) ?>" /><?php /* Hover Image */ echo MAGE::helper('ThemeOptions')->getHoverImage($_product, 275, 550); ?></div></a>
++												<?php  // Fancybox
++												if ($fancybox['fancybox_status'] && $fancybox['fancybox_listing'] == 1): ?>
++														<a class="fancybox category-gallery" title="<?php echo $_productNameStripped; ?>" href="<?php echo $this->helper('catalog/image')->init($_product, 'small_image'); ?>">&nbsp;</a>
++													<?php endif;
++												// End Fancybox ?>
++											</div>
++											<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>                        
++											<div class="actions">
++												<?php if($_product->isSaleable()): ?>
++													<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
++												<?php else: ?>
++													<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
++												<?php endif; ?>
++												<?php echo $this->getPriceHtml($_product, true) ?>
++												<div class="clear"></div>
++											</div>
+ 										</div>
+-										<h2 class="product-name"><a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $this->stripTags($_product->getName(), null, true) ?>"><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></a></h2>                        
+-										<div class="actions">
+-											<?php if($_product->isSaleable()): ?>
+-												<button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+-											<?php else: ?>
+-												<p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+-											<?php endif; ?>
+-											<?php echo $this->getPriceHtml($_product, true) ?>
+-											<div class="clear"></div>
+-										</div>
+ 									</div>
+ 								</li>
+ 								<?php if (++$i > $_collectionSize-1 ) break; endforeach ?>
+@@ -68,8 +76,8 @@
+ 			  snapToChildren: true,
+ 			  desktopClickDrag: true,
+ 			  infiniteSlider: true
+-			  <?php if(isset($sliderConfig ['autoSlide'])): ?>, <?php echo $this->getSliderOptions(); ?><?php endif; ?>
+-			  , navNextSelector: '#home-slider-<?php echo $randId; ?> .next',
++			  <?php echo $this->getSliderOptions(); ?>,
++			  navNextSelector: '#home-slider-<?php echo $randId; ?> .next',
+ 			  navPrevSelector: '#home-slider-<?php echo $randId; ?> .prev'
+ 			  <?php if(isset($sliderConfig ['autoSlide'])): ?>, autoSlide: <?php echo $sliderConfig ['autoSlide']; ?><?php endif; ?>
+ 			  <?php if(isset($sliderConfig ['autoSlideTimer'])): ?>, autoSlideTimer: <?php echo $sliderConfig ['autoSlideTimer']; ?><?php endif; ?>
+@@ -90,5 +98,11 @@
+ 	</script>
+ 	</div>
+ 	<div class="clear"></div>
++	<?php else: ?>
++		<div class="no-widget"><?php echo $this->__("Warning: Please make sure you have %s+ products to display in the slider, otherwise widget won't be displayed", $visibleProducts+1) ?></div>
++	<?php endif; ?>
+ </div>
+-<?php unset ($randId); ?>
+\ No newline at end of file
++<?php 
++	unset ($randId);
++}
++?>
+\ No newline at end of file
+Index: app/design/frontend/meigeetheme/default/template/meigee/meigeewidgets/slider_2.phtml
+===================================================================
+--- app/design/frontend/meigeetheme/default/template/meigee/meigeewidgets/slider_2.phtml	(.../1.1)	(revision 38)
++++ app/design/frontend/meigeetheme/default/template/meigee/meigeewidgets/slider_2.phtml	(.../1.2)	(revision 38)
+@@ -1,24 +1,30 @@
+ <?php
+     $_productCollection = $this->getMyCollection();
+-    $category = $this->catName();
+-    $_helper = $this->helper('catalog/output');
+-    $_collectionSize = $this->productsAmount();
++	$gridMode = $this->sliderGridSelection2();
++	$visibleProducts = $this->getData('visible_products_2');
++	$productCount = count($_productCollection);
++	if (count($_productCollection)) {
++	
++		$category = $this->catName();
++		$_helper = $this->helper('catalog/output');
++		$_collectionSize = $this->productsAmount();
+ 
+-    $randId = $this->getWidgetId();
+-    
+-    $fancybox = MAGE::helper('ThemeOptions')->getThemeOptions('fancybox' );
++		$randId = $this->getWidgetId();
++		
++		$fancybox = MAGE::helper('ThemeOptions')->getThemeOptions('fancybox' );
+ ?>
+ <?php // Slider ?>
+ <div class="home-slider-wrapper slider-2-wrapper">
+ 	<div class="container_12">
++	<?php if($productCount > $visibleProducts): ?>
+ 		<div class="grid_12">
+ 			<div class="slider-container slider-2 widget-container">
+-				<?php if($this->getLayout()->createBlock('cms/block')->setBlockId('slider_2_text_box')->toHtml()): ?>
++				<?php if($this->getData("block_position") == 1): ?>
+ 				<div class="slider-text-box grid_3 alpha">
+-					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('slider_2_text_box')->toHtml() ?>
++					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($this->getData("static_block"))->toHtml() ?>
+ 				</div>
+ 				<?php endif; ?>
+-				<div class="home-container<?php if($this->getLayout()->createBlock('cms/block')->setBlockId('slider_2_text_box')->toHtml()){echo ' grid_9 omega';}else{echo ' no-static-block grid_12';} ?>">
++				<div class="home-container<?php if($this->getData("block_position") == 1){echo ' grid_9 omega';}elseif($this->getData("block_position") == 2){echo ' grid_9 alpha';}else{echo ' no-static-block '.$gridMode.' alpha omega';} ?>">
+ 					<div class="home-slider-conainer">
+ 						<div class="home-slider es-carousel-wrapper" id="home-slider-<?php echo $randId; ?>">
+ 							<div class="widget-slider">
+@@ -50,6 +56,11 @@
+ 						</div>
+ 					</div>
+ 				</div>
++				<?php if($this->getData("block_position") == 2): ?>
++				<div class="slider-text-box grid_3 omega">
++					<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId($this->getData("static_block"))->toHtml() ?>
++				</div>
++				<?php endif; ?>
+ 				<div class="clear"></div>
+ 			</div>
+ 		<script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+@@ -82,6 +93,12 @@
+ 		</script>
+ 		</div>
+ 		<div class="clear"></div>
++		<?php else: ?>
++			<div class="no-widget"><?php echo $this->__("Warning: Please make sure you have %s+ products to display in the slider, otherwise widget won't be displayed", $visibleProducts+1) ?></div>
++		<?php endif; ?>
+ 	</div>
+ </div>
+-<?php unset ($randId); ?>
+\ No newline at end of file
++<?php 
++	unset ($randId);
++}
++?>
+\ No newline at end of file
+Index: app/code/local/Meigee/ThemeOptions/etc/system.xml
+===================================================================
+--- app/code/local/Meigee/ThemeOptions/etc/system.xml	(.../1.1)	(revision 38)
++++ app/code/local/Meigee/ThemeOptions/etc/system.xml	(.../1.2)	(revision 38)
+@@ -295,7 +295,7 @@
+                         </logo_alt>
+                     </fields>
+                 </customlogo>
+-                <!-- <menu translate="label">
++                <menu translate="label">
+                     <label>Menu</label>
+                     <frontend_type>text</frontend_type>
+                     <sort_order>4</sort_order>
+@@ -354,7 +354,7 @@
+                             <show_in_store>1</show_in_store>
+                         </cat_button>
+                     </fields>
+-                </menu> -->
++                </menu>
+                 <lang_switcher translate="label">
+                     <label>Language Switcher</label>
+                     <frontend_type>text</frontend_type>
+Index: app/code/local/Meigee/ThemeOptions/Helper/Retina.php
+===================================================================
+--- app/code/local/Meigee/ThemeOptions/Helper/Retina.php	(.../1.1)	(revision 38)
++++ app/code/local/Meigee/ThemeOptions/Helper/Retina.php	(.../1.2)	(revision 38)
+@@ -35,10 +35,10 @@
+ 					$html = 'data-srcX2="' . Mage::helper('catalog/image')->init($_item, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(800, null) . '"';
+ 				break;
+ 				case 'crosssell_big':
+-					$html = 'data-srcX2="' . Mage::helper('catalog/image')->init($_item, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(800, null) . '"';
++					$html = 'data-srcX2="' . Mage::helper('catalog/image')->init($_item, 'thumbnail')->constrainOnly(TRUE)->keepAspectRatio(TRUE)->keepFrame(FALSE)->resize(776, null) . '"';
+ 				break;
+ 				case 'cart_item_default':
+-					$html = 'data-srcX2="' . $_item->getProductThumbnail()->resize(840, null) . '"';
++					$html = 'data-srcX2="' . $_item->getProductThumbnail()->resize(714, null) . '"';
+ 				break;
+ 				case 'currency_header':
+ 					$html = 'data-srcX2="' . Mage::getDesign()->getSkinUrl('images/@x2/'.$_item.'@x2.png') . '"';
+Index: app/code/local/Meigee/ThemeOptions/Helper/Data.php
+===================================================================
+--- app/code/local/Meigee/ThemeOptions/Helper/Data.php	(.../1.1)	(revision 38)
++++ app/code/local/Meigee/ThemeOptions/Helper/Data.php	(.../1.2)	(revision 38)
+@@ -10,6 +10,11 @@
+ {
+  public function getThemeOptions ($themeOption) {
+  	switch ($themeOption) {
++		case 'user-scalable':
++			 if(Mage::getStoreConfig('meigee_general/layout/responsiveness') == 1){
++				return '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />';
++			 }
++		break;
+ 		case 'mediaurl':
+ 		    return Mage::getBaseUrl('media') . 'images/';
+ 		break;
+Index: app/code/local/Meigee/Meigeewidgets/Block/Featuredcategory.php
+===================================================================
+--- app/code/local/Meigee/Meigeewidgets/Block/Featuredcategory.php	(.../1.1)	(revision 38)
++++ app/code/local/Meigee/Meigeewidgets/Block/Featuredcategory.php	(.../1.2)	(revision 38)
+@@ -7,7 +7,7 @@
+  *
+  */
+ class Meigee_Meigeewidgets_Block_Featuredcategory
+-extends Mage_Catalog_Block_Product_List
++extends Mage_Catalog_Block_Product_Abstract
+ implements Mage_Widget_Block_Interface
+ {
+     protected $products;
+@@ -19,7 +19,7 @@
+     protected function catId()
+     {
+         $cat = explode("/", $this->getData('featured_category'));     
+-        return $cat[1];
++        return $cat[0];
+     }
+     public function catName () {
+         return Mage::getModel('catalog/category')->load($this->catId());
+@@ -45,28 +45,60 @@
+ 			->addCategoryFilter(Mage::getModel('catalog/category')->load($this->catId()));
+ 		return $this->products;
+ 	}
+-
+-	 
++	
++	public function sliderGridSelection() {
++		switch ($this->getData('visible_products')){
++			case '1':
++				return 'grid_3';
++			break;
++			case '2':
++				return 'grid_6';
++			break;
++			case '3':
++				return 'grid_9';
++			break;
++			case '4':
++				return 'grid_12';
++			break;
++		}
++	}
++	
++	public function sliderGridSelection2() {
++		switch ($this->getData('visible_products_2')){
++			case '1':
++				return "grid_3";
++			break;
++			case '2':
++				return "grid_6";
++			break;
++			case '3':
++				return "grid_9";
++			break;
++		}
++	}
++	
+     public function getSliderOptions () {
+ 		if ($this->getData('template') == 'meigee/meigeewidgets/slider.phtml' and $this->getData('autoSlide') == 1) {
+             $options =
+-            'autoSlide: 1, '
++            ', autoSlide: 1, '
+             . 'autoSlideTimer:'.$this->getData('autoSlideTimer').','
+             .'autoSlideTransTimer:'.$this->getData('autoSlideTransTimer');
++			return $options;
+         }
+-		if ($this->getData('template') == 'meigee/meigeewidgets/slider_.phtml' and $this->getData('autoSlide') == 1) {
++		if ($this->getData('template') == 'meigee/meigeewidgets/slider_2.phtml' and $this->getData('autoSlide') == 1) {
+             $options =
+-            'autoSlide: 1, '
++            ', autoSlide: 1, '
+             . 'autoSlideTimer:'.$this->getData('autoSlideTimer_2').','
+             .'autoSlideTransTimer:'.$this->getData('autoSlideTransTimer_2');
++			return $options;
+         }
+ 		if ($this->getData('template') == 'meigee/meigeewidgets/slider_small.phtml' and $this->getData('autoSlide') == 1) {
+             $options =
+-            'autoSlide: 1, '
++            ', autoSlide: 1, '
+             . 'autoSlideTimer:'.$this->getData('autoSlideTimer_small').','
+             .'autoSlideTransTimer_small:'.$this->getData('autoSlideTransTimer_small');
++			return $options;
+         }
+-        return $options;
+     }
+ 	
+ 	public function getWidgetId () {
+Index: app/code/local/Meigee/Meigeewidgets/Block/Newproducts.php
+===================================================================
+--- app/code/local/Meigee/Meigeewidgets/Block/Newproducts.php	(.../1.1)	(revision 38)
++++ app/code/local/Meigee/Meigeewidgets/Block/Newproducts.php	(.../1.2)	(revision 38)
+@@ -7,7 +7,7 @@
+  *
+  */
+ class Meigee_Meigeewidgets_Block_Newproducts
+-extends Mage_Catalog_Block_Product_List
++extends Mage_Catalog_Block_Product_Abstract
+ implements Mage_Widget_Block_Interface
+ {
+     protected $products;
+@@ -19,7 +19,7 @@
+     protected function catId()
+     {
+         $cat = explode("/", $this->getData('featured_category'));     
+-        return $cat[1];
++        return $cat[0];
+     }
+     public function catName () {
+         return Mage::getModel('catalog/category')->load($this->catId());
+@@ -70,27 +70,60 @@
+ 
+         return $collection;
+     }
++	
++	public function sliderGridSelection() {
++		switch ($this->getData('visible_products')){
++			case '1':
++				return 'grid_3';
++			break;
++			case '2':
++				return 'grid_6';
++			break;
++			case '3':
++				return 'grid_9';
++			break;
++			case '4':
++				return 'grid_12';
++			break;
++		}
++	}
++	
++	public function sliderGridSelection2() {
++		switch ($this->getData('visible_products_2')){
++			case '1':
++				return "grid_3";
++			break;
++			case '2':
++				return "grid_6";
++			break;
++			case '3':
++				return "grid_9";
++			break;
++		}
++	}
+ 
+     public function getSliderOptions () {
+         if ($this->getData('template') == 'meigee/meigeewidgets/slider.phtml' and $this->getData('autoSlide') == 1) {
+             $options =
+-            'autoSlide: 1, '
++            ', autoSlide: 1, '
+             . 'autoSlideTimer:'.$this->getData('autoSlideTimer').','
+             .'autoSlideTransTimer:'.$this->getData('autoSlideTransTimer');
++			return $options;
+         }
+-		if ($this->getData('template') == 'meigee/meigeewidgets/slider_.phtml' and $this->getData('autoSlide') == 1) {
++		if ($this->getData('template') == 'meigee/meigeewidgets/slider_2.phtml' and $this->getData('autoSlide') == 1) {
+             $options =
+-            'autoSlide: 1, '
++            ', autoSlide: 1, '
+             . 'autoSlideTimer:'.$this->getData('autoSlideTimer_2').','
+             .'autoSlideTransTimer:'.$this->getData('autoSlideTransTimer_2');
++			return $options;
+         }
+ 		if ($this->getData('template') == 'meigee/meigeewidgets/slider_small.phtml' and $this->getData('autoSlide') == 1) {
+             $options =
+-            'autoSlide: 1, '
++            ', autoSlide: 1, '
+             . 'autoSlideTimer:'.$this->getData('autoSlideTimer_small').','
+             .'autoSlideTransTimer_small:'.$this->getData('autoSlideTransTimer_small');
++			return $options;
+         }
+-        return $options;
+     }
+ 
+     public function getWidgetId () {
+Index: app/code/local/Meigee/Meigeewidgets/etc/widget.xml
+===================================================================
+--- app/code/local/Meigee/Meigeewidgets/etc/widget.xml	(.../1.1)	(revision 38)
++++ app/code/local/Meigee/Meigeewidgets/etc/widget.xml	(.../1.2)	(revision 38)
+@@ -24,6 +24,7 @@
+                 <required>1</required>
+                 <type>select</type>
+                 <source_model>meigeewidgets/templates</source_model>
++				<description>If chosen slider make sure you have at least 4 products to display, otherwise widget won't be displayed.</description>
+             </template>
+             <products_amount>
+                 <label>Amount of Products to Display</label>
+@@ -32,6 +33,55 @@
+                 <type>text</type>
+                 <value>10</value>
+             </products_amount>
++			<block_position>
++                <label>Position of static block</label>
++                <description>Allows to put static block on the right or left of the slider</description>
++                <visible>1</visible>
++                <required>1</required>
++                <type>select</type>
++                <source_model>meigeewidgets/blockposition</source_model>
++                <value>0</value>
++                <depends>
++                    <template><value>meigee/meigeewidgets/slider_2.phtml</value></template>
++                </depends>
++            </block_position>
++			<static_block>
++                <label>Name of static block</label>
++                <visible>1</visible>
++                <required>0</required>
++                <type>text</type>
++                <value></value>
++                <depends>
++                    <template><value>meigee/meigeewidgets/slider_2.phtml</value></template>
++                </depends>
++            </static_block>
++			<visible_products>
++                <label>Amount of Visible Products</label>
++                <visible>1</visible>
++                <required>1</required>
++                <type>select</type>
++                <source_model>meigeewidgets/visible</source_model>
++				<value>4</value>
++				<depends>
++                    <template>
++                        <value>meigee/meigeewidgets/slider.phtml</value>
++                    </template>
++                </depends>
++            </visible_products>
++			<visible_products_2>
++                <label>Amount of Visible Products</label>
++                <visible>1</visible>
++                <required>1</required>
++                <type>select</type>
++                <source_model>meigeewidgets/visible2</source_model>
++				<value>3</value>
++				<depends>
++                    <block_position>
++                        <value>0</value>
++                    </block_position>
++					<template><value>meigee/meigeewidgets/slider_2.phtml</value></template>
++                </depends>
++            </visible_products_2>
+             <column_count>
+                 <label>Columns count</label>
+                 <visible>1</visible>
+@@ -235,6 +285,7 @@
+                 <required>1</required>
+                 <type>select</type>
+                 <source_model>meigeewidgets/templates</source_model>
++				<description>If chosen slider make sure you have at least 4 products to display, otherwise widget won't be displayed.</description>
+             </template>
+             <products_amount>
+                 <label>Amount of Products to Display</label>
+@@ -243,6 +294,55 @@
+                 <type>text</type>
+                 <value>10</value>
+             </products_amount>
++			<block_position>
++                <label>Position of static block</label>
++                <description>Allows to put static block on the right or left of the slider</description>
++                <visible>1</visible>
++                <required>1</required>
++                <type>select</type>
++                <source_model>meigeewidgets/blockposition</source_model>
++                <value>0</value>
++                <depends>
++                    <template><value>meigee/meigeewidgets/slider_2.phtml</value></template>
++                </depends>
++            </block_position>
++			<static_block>
++                <label>Name of static block</label>
++                <visible>1</visible>
++                <required>0</required>
++                <type>text</type>
++                <value></value>
++                <depends>
++                    <template><value>meigee/meigeewidgets/slider_2.phtml</value></template>
++                </depends>
++            </static_block>
++			<visible_products>
++                <label>Amount of Visible Products</label>
++                <visible>1</visible>
++                <required>1</required>
++                <type>select</type>
++                <source_model>meigeewidgets/visible</source_model>
++				<value>4</value>
++				<depends>
++                    <template>
++                        <value>meigee/meigeewidgets/slider.phtml</value>
++                    </template>
++                </depends>
++            </visible_products>
++			<visible_products_2>
++                <label>Amount of Visible Products</label>
++                <visible>1</visible>
++                <required>1</required>
++                <type>select</type>
++                <source_model>meigeewidgets/visible2</source_model>
++				<value>3</value>
++				<depends>
++                    <block_position>
++                        <value>0</value>
++                    </block_position>
++					<template><value>meigee/meigeewidgets/slider_2.phtml</value></template>
++                </depends>
++            </visible_products_2>
+             <!-- <column_count>
+                 <label>Columns count</label>
+                 <visible>1</visible>
+Index: app/code/local/Meigee/Meigeewidgets/Model/Visible.php
+===================================================================
+--- app/code/local/Meigee/Meigeewidgets/Model/Visible.php	(.../1.1)	(revision 0)
++++ app/code/local/Meigee/Meigeewidgets/Model/Visible.php	(.../1.2)	(revision 38)
+@@ -0,0 +1,13 @@
++<?php class Meigee_Meigeewidgets_Model_Visible
++{
++    public function toOptionArray()
++    {
++        return array(
++            array('value'=>'1', 'label'=>Mage::helper('meigeewidgets')->__('1')),
++            array('value'=>'2', 'label'=>Mage::helper('meigeewidgets')->__('2')),
++            array('value'=>'3', 'label'=>Mage::helper('meigeewidgets')->__('3')),
++            array('value'=>'4', 'label'=>Mage::helper('meigeewidgets')->__('4'))
++        );
++    }
++
++}
+\ No newline at end of file
+Index: app/code/local/Meigee/Meigeewidgets/Model/Blockposition.php
+===================================================================
+--- app/code/local/Meigee/Meigeewidgets/Model/Blockposition.php	(.../1.1)	(revision 0)
++++ app/code/local/Meigee/Meigeewidgets/Model/Blockposition.php	(.../1.2)	(revision 38)
+@@ -0,0 +1,20 @@
++<?php 
++/**
++ * Magento
++ *
++ * @author    Meigeeteam http://www.meaigeeteam.com <nick@meaigeeteam.com>
++ * @copyright Copyright (C) 2010 - 2012 Meigeeteam
++ *
++ */
++class Meigee_Meigeewidgets_Model_Blockposition
++{
++    public function toOptionArray()
++    {
++        return array(
++            array('value'=>0, 'label'=>'None'),
++            array('value'=>1, 'label'=>'Left'),
++            array('value'=>2, 'label'=>'Right')
++        );
++    }
++
++}
+\ No newline at end of file
+Index: app/code/local/Meigee/Meigeewidgets/Model/Visible2.php
+===================================================================
+--- app/code/local/Meigee/Meigeewidgets/Model/Visible2.php	(.../1.1)	(revision 0)
++++ app/code/local/Meigee/Meigeewidgets/Model/Visible2.php	(.../1.2)	(revision 38)
+@@ -0,0 +1,13 @@
++<?php class Meigee_Meigeewidgets_Model_Visible2
++{
++    public function toOptionArray()
++    {
++        return array(
++            array('value'=>'1', 'label'=>Mage::helper('meigeewidgets')->__('1')),
++            array('value'=>'2', 'label'=>Mage::helper('meigeewidgets')->__('2')),
++            array('value'=>'3', 'label'=>Mage::helper('meigeewidgets')->__('3')),
++			array('value'=>'3', 'label'=>Mage::helper('meigeewidgets')->__('4'))
++        );
++    }
++
++}
+\ No newline at end of file
+Index: skin/frontend/meigeetheme/default/js/script.js
+===================================================================
+--- skin/frontend/meigeetheme/default/js/script.js	(.../1.1)	(revision 38)
++++ skin/frontend/meigeetheme/default/js/script.js	(.../1.2)	(revision 38)
+@@ -316,6 +316,11 @@
+ 	/* //Top Selects */	
+ 	
+ 	if (jQuery('body').hasClass('retina-ready')) {
++		
++		if(window.devicePixelRatio > 1){
++			jQuery('body').addClass('retina-device');
++		}
++	
+ 		/* Mobile Devices */
+ 		if((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i)) || (navigator.userAgent.match(/Android/i))){
+ 			
+@@ -619,5 +624,11 @@
+ 			jQuery(this).prepend('<div class="sidebar-shadow" />');
+ 		});
+ 	}
++	
++	/* ie 10 check */
++	if(navigator.userAgent.indexOf('MSIE 10')!=-1){
++		jQuery('body').addClass('ie10');
++	}
++	
+ });
+ var pixelRatio = !!window.devicePixelRatio ? window.devicePixelRatio : 1;
+\ No newline at end of file
+Index: skin/frontend/meigeetheme/default/images/ie/ie_menu_border.png
+===================================================================
+Cannot display: file marked as a binary type.
+svn:mime-type = application/octet-stream
+Index: skin/frontend/meigeetheme/default/images/ie/ie_menu_border.png
+===================================================================
+--- skin/frontend/meigeetheme/default/images/ie/ie_menu_border.png	(.../1.1)	(revision 38)
++++ skin/frontend/meigeetheme/default/images/ie/ie_menu_border.png	(.../1.2)	(revision 38)
+
+Property changes on: skin/frontend/meigeetheme/default/images/ie/ie_menu_border.png
+___________________________________________________________________
+Added: svn:mime-type
+## -0,0 +1 ##
++application/octet-stream
+\ No newline at end of property
+Index: skin/frontend/meigeetheme/default/css/grid_1008.css
+===================================================================
+--- skin/frontend/meigeetheme/default/css/grid_1008.css	(.../1.1)	(revision 38)
++++ skin/frontend/meigeetheme/default/css/grid_1008.css	(.../1.2)	(revision 38)
+@@ -325,8 +325,7 @@
+ 	left:-924px;
+ }
+ 
+-header#header .top-cart #mini-cart li.item.last{display:none;}
+-header#header .top-cart #mini-cart li.item.first{display:block;}
++header#header .top-cart #mini-cart.last-remove li.item.last{display:none;}
+ 
+ 
+ .header-slider header#header .header-links-wrapper .top-cart.open, 
+@@ -334,6 +333,67 @@
+ 	height:345px;
+ 	margin-top:-265px;
+ }
++
++.header-slider header#header .header-links-wrapper .top-cart.open,
++.header-slider header#header .header-links-wrapper .top-cart.open:hover{
++	height: 327px;
++	margin-top: -247px;
++}
++
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open, 
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open:hover{
++	height:327px;
++	margin-top:-247px;
++}
++
++.header-slider header#header .header-links-wrapper .top-cart.open.one-cart-item,
++.header-slider header#header .header-links-wrapper .top-cart.open.one-cart-item:hover{
++	height: 267px;
++	margin-top: -188px;
++}
++
++.header-slider header#header .header-links-wrapper .top-cart.open.two-cart-items,
++.header-slider header#header .header-links-wrapper .top-cart.open.two-cart-items:hover{
++	  height: 327px;
++	  margin-top: -247px;
++}
++
++
++.header-slider header#header .header-links-wrapper.three-elements .top-cart.open.two-cart-items.two-cart-items, 
++.header-slider header#header .header-links-wrapper.three-elements .top-cart.open.two-cart-items.two-cart-items:hover{
++	height: 327px;
++	margin-top: -247px;
++}
++
++
++.header-slider header#header .header-links-wrapper.three-elements .top-cart.open.one-cart-item.one-cart-item,
++.header-slider header#header .header-links-wrapper.three-elements .top-cart.open.one-cart-item.one-cart-item:hover {
++	height: 268px;
++	margin-top: -188px;
++}
++
++
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open.one-cart-item, 
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open.one-cart-item:hover {
++	height: 268px;
++	margin-top: -188px;
++}
++	
++	
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open.two-cart-items, 
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open.two-cart-items:hover {
++	height: 327px;
++	margin-top: -247px;
++}
++
++
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open.no-items, 
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open.no-items:hover{
++	height: 186px;
++	margin-top: -106px;
++}
++
++
+ .header-slider header#header .dropdown-links.open {
+ 	height: 204px;
+ 	margin-top: -124px;
+@@ -356,8 +416,6 @@
+ }
+ .header-slider-container .iosSlider #item_header_slide_3 h3 a{color:#fff;}
+ .header-slider-container .iosSlider #item_header_slide_3 h3 a:hover{color:#fff;}
+-.header-slider-container .next{right:3%;}
+-.header-slider-container .prev{left:3%;}
+ 
+ .small-slider .home-slider-conainer li.item {
+ 	width:284px;
+@@ -522,21 +580,38 @@
+ 	margin-left:0;
+ }
+ 
++.block-related {
++	margin: 0;
++	padding: 0;
++}
++
++.block-related .no-slider li.item:nth-of-type(6n+6){
++	clear:both;
++}
+ .block-related .no-slider li.item:nth-of-type(7n+7){
+ 	margin-right:0;
+ }
+ .block-related .no-slider li.item:nth-of-type(7n+1){
+-	clear:left;
++	clear:none;
+ }
+ 
+-.more-views ul.no-slider li:nth-of-type(3n+3){
++.more-views ul.no-slider li:nth-of-type(4n+3){
+ 	margin-right:0;
+ }
+-.more-views ul.no-slider li:nth-of-type(3n+1){
++.more-views ul.no-slider li:nth-of-type(4n+1){
+ 	clear:left;
+ }
++.more-views ul.no-slider li a{margin-right:9px;}
+ 
++#footer .footer-indent ul.links { margin-bottom: 10px;}
++#footer address{
++	border-top: 1px solid rgba(255, 255, 255, 0.1);
++	padding: 10px 0 0 8px;
++	clear: both;
++	float:none;
++}
+ 
++
+ /* `Clear Floated Elements
+ ----------------------------------------------------------------------------------------------------*/
+ 
+Index: skin/frontend/meigeetheme/default/css/grid_1280.css
+===================================================================
+--- skin/frontend/meigeetheme/default/css/grid_1280.css	(.../1.1)	(revision 38)
++++ skin/frontend/meigeetheme/default/css/grid_1280.css	(.../1.2)	(revision 38)
+@@ -387,7 +387,7 @@
+ .more-views ul.no-slider li:nth-of-type(4n+4){
+ 	margin-right:0;
+ }
+-.more-views ul.no-slider li:nth-of-type(4n+1){
++.more-views ul.no-slider li:nth-of-type(5n+1){
+ 	clear:left;
+ }
+ 
+@@ -460,7 +460,14 @@
+ header#header .top-cart .block-content .mini-products-list .product-details{
+ 	width:230px;
+ }
++header#header .two-elements .top-cart .block-content .mini-products-list .product-details{
++	width:90%;
++}
+ 
++header#header .three-elements .top-cart .block-content .mini-products-list .product-details {
++	width: 86%;
++}
++
+ header#header .header-links-wrapper .lang-curr .content-block .indent{
+ 	padding: 1.8em 25px;
+ }
+@@ -469,6 +476,8 @@
+ 	margin-right: 21px;
+ }
+ 
++#nav.nav-wide ul.level0, #nav.nav-wide .static-wrapper{width:1216px;}
++
+ .header-slider header#header .dropdown-links.open {
+ 	height: 200px;
+ 	margin-top: -120px;
+@@ -489,11 +498,24 @@
+ 	margin-top: -88px;
+ }
+ 
++.header-slider header#header .header-links-wrapper .top-cart.open.one-cart-item, 
++.header-slider header#header .header-links-wrapper .top-cart.open.one-cart-item:hover{
++	height:266px;
++	margin-top:-187px;
++}
+ 
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open.one-cart-item, 
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open.one-cart-item:hover{
++	margin-top:-186px;
++}
++
++.header-slider header#header .header-links-wrapper .top-cart.open.two-cart-items,
++.header-slider header#header .header-links-wrapper .top-cart.open.two-cart-items:hover{
++	height: 327px;
++	margin-top: -247px;
++}
++
+ /*  Header Slider  */
+-.header-slider-container .iosSlider .nav-buttons{
+-	margin-left:-636px;
+-}
+ .header-slider-container .iosSlider .slider .item h2,
+ .header-slider-container .iosSlider .slider .item h3{
+ 	margin-left:-626px;
+@@ -503,10 +525,9 @@
+ 	margin-left: -646px;
+ }
+ 
+-.header-slider-container .prev{left:-10%;}
+-.header-slider-container .next{right:-10%;}
+ 
+ 
++
+ /* Small Slider */
+ .small-slider .home-slider-conainer .products-grid li.item{
+ 	width:310px;
+@@ -568,6 +589,12 @@
+ .block-related li.item{
+ 	width:211px;
+ }
++.block-related .no-slider li.item{
++	width:208px;
++}
++.block-related .no-slider li.item:nth-of-type(7n+7){
++	clear:both;
++}
+ 
+ /*Multiple Checkout*/
+ .multiple-checkout .sp-methods .form-list input.input-text{width:306px;}
+@@ -612,8 +639,8 @@
+ .form-list input.input-text{width:379px;}
+ .form-list li.wide input.input-text{width:785px;}
+ .form-list li.wide textarea{	width:785px;}
+-	
+-	
++
++
+ /* `Clear Floated Elements
+ ----------------------------------------------------------------------------------------------------*/
+ 
+Index: skin/frontend/meigeetheme/default/css/grid_responsive.css
+===================================================================
+--- skin/frontend/meigeetheme/default/css/grid_responsive.css	(.../1.1)	(revision 38)
++++ skin/frontend/meigeetheme/default/css/grid_responsive.css	(.../1.2)	(revision 38)
+@@ -399,7 +399,7 @@
+ 	.more-views ul.no-slider li:nth-of-type(4n+4){
+ 		margin-right:0;
+ 	}
+-	.more-views ul.no-slider li:nth-of-type(4n+1){
++	.more-views ul.no-slider li:nth-of-type(5n+1){
+ 		clear:left;
+ 	}
+ 	
+@@ -488,6 +488,8 @@
+ 		margin-right: 21px;
+ 	}
+ 	
++	#nav.nav-wide ul.level0, #nav.nav-wide .static-wrapper{width:1216px;}
++	
+ 	.header-slider header#header .dropdown-links.open {
+ 		height: 200px;
+ 		margin-top: -120px;
+@@ -525,23 +527,25 @@
+ 		margin-top: -247px;
+ 	}
+ 	
++	.header-slider header#header .header-links-wrapper .top-cart.open.items-avaliable{
++		margin-top: -300px;
++		height: 380px;
++	}
++	
++	
+ 	/*  Header Slider  */
+-	.header-slider-container .iosSlider .nav-buttons{
+-		margin-left:-636px;
+-	}
+ 	.header-slider-container .iosSlider .slider .item h2,
+ 	.header-slider-container .iosSlider .slider .item h3{
+ 		margin-left:-626px;
+ 	}
+-	.header-slider-container .iosSlider #item_header_slide_3 h2,
+-	.header-slider-container .iosSlider #item_header_slide_3 h3{
++	.header-slider-container .iosSlider .item .right-caption h2,
++	.header-slider-container .iosSlider .item .right-caption h3{
+ 		margin-left: -646px;
+ 	}
+ 	
+-	.header-slider-container .prev{left:-10%;}
+-	.header-slider-container .next{right:-10%;}
+ 	
+ 	
++	
+ 	/* Small Slider */
+ 	.small-slider .home-slider-conainer .products-grid li.item{
+ 		width:310px;
+@@ -603,7 +607,13 @@
+ 	.block-related li.item{
+ 		width:211px;
+ 	}
+-    
++	.block-related .no-slider li.item{
++		width:208px;
++	}
++    .block-related .no-slider li.item:nth-of-type(7n+7){
++		clear:both;
++	}
++	
+     /*Multiple Checkout*/
+     .multiple-checkout .sp-methods .form-list input.input-text{width:306px;}
+     
+@@ -649,6 +659,22 @@
+     .form-list li.wide textarea{	width:785px;}
+ }
+ 
++ /* #Custom media for arrows
++================================================== */   
++@media only screen and (min-width: 1280px)  and (max-width: 1450px) {
++	.home-slider-conainer{
++		margin:0;
++		padding:5em 0;
++	}
++	.slider-container .next{
++		right:11px;
++	}
++	
++	.block-related {
++		margin: 0;
++		padding: 0;
++	}
++}
+ 
+  /* #Desktop
+ ================================================== */   
+@@ -1047,7 +1073,16 @@
+ 		margin-top: -106px;
+ 	}
+ 	
++	.header-slider header#header .header-links-wrapper .block-subscribe .block-title{
++		height:39px;
++	}
+ 	
++	.header-slider header#header .header-links-wrapper .top-cart.no-items.open, 
++	.header-slider header#header .header-links-wrapper .top-cart.no-items.open:hover {
++		margin-top: -104px;
++		height:184px;
++	}
++	
+ 	.header-slider header#header .dropdown-links.open {
+ 		height: 204px;
+ 		margin-top: -124px;
+@@ -1056,22 +1091,20 @@
+ 		top: 57%;
+ 	}
+ 	
+-	.header-slider-container .iosSlider #item_header_slide_2 h2{
++	.header-slider-container .iosSlider .item .left-caption-type-2 h2{
+ 		top:46%;
+ 	}
+-	.header-slider-container .iosSlider #item_header_slide_2 h3{
++	.header-slider-container .iosSlider .item .left-caption-type-2 h3{
+ 		top:65%;
+ 	}
+-	.header-slider-container .iosSlider #item_header_slide_3 h2 {
++	.header-slider-container .iosSlider .right-caption h2 {
+ 		top:31%;
+ 	}
+-	.header-slider-container .iosSlider #item_header_slide_3 h3{
++	.header-slider-container .iosSlider .right-caption h3{
+ 		top:50%;
+ 	}
+-	.header-slider-container .iosSlider #item_header_slide_3 h3 a{color:#fff;}
+-	.header-slider-container .iosSlider #item_header_slide_3 h3 a:hover{color:#fff;}
+-	.header-slider-container .next{right:3%;}
+-	.header-slider-container .prev{left:3%;}
++	.header-slider-container .iosSlider .right-caption h3 a{color:#fff;}
++	.header-slider-container .iosSlider .right-caption h3 a:hover{color:#fff;}
+ 	
+ 	.small-slider .home-slider-conainer li.item {
+ 		width:284px;
+@@ -1236,20 +1269,33 @@
+ 		margin-left:0;
+ 	}
+ 	
++	.block-related {
++		margin: 0;
++		padding: 0;
++	}
++	
++	.block-related .no-slider li.item:nth-of-type(6n+6){
++		clear:both;
++	}
+ 	.block-related .no-slider li.item:nth-of-type(7n+7){
+ 		margin-right:0;
+ 	}
+ 	.block-related .no-slider li.item:nth-of-type(7n+1){
+-		clear:left;
++		clear:none;
+ 	}
+ 	
+-	.more-views ul.no-slider li:nth-of-type(3n+3){
++	.more-views ul.no-slider li:nth-of-type(4n+3){
+ 		margin-right:0;
+ 	}
+-	.more-views ul.no-slider li:nth-of-type(3n+1){
++	.more-views ul.no-slider li:nth-of-type(4n+1){
+ 		clear:left;
+ 	}
++	.more-views ul.no-slider li a{margin-right:9px;}
+ 	
++	.top-cart.three-cart-items #topCartContent li.item.last{display:none;}
++	.top-cart.three-cart-items #topCartContent.block-content .inner-wrapper .actions{padding-top:1em;}
++	
++	
+ 	#footer .footer-indent ul.links { margin-bottom: 10px;}
+ 	#footer address{
+ 		border-top: 1px solid rgba(255, 255, 255, 0.1);
+@@ -1605,11 +1651,18 @@
+ 		clear:left;
+ 	}
+ 	
++	.more-views .no-slider li:nth-of-type(3n+3){
++		margin-right:0;
++	}
++	.more-views .no-slider li:nth-of-type(3n+1){
++		clear:both;
++	}
++	
+ 	.block-related .no-slider li.item:nth-of-type(5n+5){
+ 		margin-right:0;
+ 	}
+ 	.block-related .no-slider li.item:nth-of-type(5n+1){
+-		clear:left;
++		clear:none;
+ 	}
+ 	
+ 	/* 2 columns list */
+@@ -1739,14 +1792,18 @@
+ 		width:245px;
+ 	}
+ 	
++	#nav.nav-wide ul.level0, #nav.nav-wide .static-wrapper{
++		top:133px;
++		width:712px;
++	}
++	
+ 	.header-slider header#header .three-elements.header-links-wrapper .top-cart.open.three-cart-items,
+ 	.header-slider header#header .three-elements.header-links-wrapper .top-cart.open.three-cart-items:hover{
+ 		height: 309px;
+ 		margin-top: -229px;
+ 	}
++		
+ 	
+-	
+-	
+ 	header#header .top-cart #mini-cart li.item.first {
+ 		display: block;
+ 	}
+@@ -1789,6 +1846,18 @@
+ 		margin-top: -106px;
+ 	}
+ 	
++	.header-slider header#header .header-links-wrapper .top-cart .block-title {
++		height: 44px;
++	}
++	.header-slider header#header .header-links-wrapper .block-subscribe .block-title {
++		height: 39px;
++	}
++	
++	.header-slider header#header .header-links-wrapper .lang-curr .block-title {
++		height: 40px;
++	}
++	
++	
+     .data-table td{
+ 		padding:9px;
+     }
+@@ -1801,11 +1870,12 @@
+ 	}
+ 	
+ 	.home-slider-conainer .products-grid li.item{
+-		width:255px;
++		width:187px;
+ 	}
++	.home-slider-conainer .products-grid li.item .indent{margin-right:10px;}
+ 	
+ 	.slider-2-wrapper .home-slider-conainer .products-grid li.item {
+-		width:292px;
++		width:183px;
+ 	}
+ 	.slider-2-wrapper .slider-container .prev {
+ 		left: 0;
+@@ -1877,6 +1947,16 @@
+ 		margin-top:-246px;
+ 	}
+ 	
++	
++	.header-slider header#header .header-links-wrapper .block-subscribe .block-title{
++		height:40px;
++	}
++	
++	.header-slider header#header .header-links-wrapper .top-cart.three-cart-items.open{margin-top:-210px; height:290px;}
++	.header-slider header#header .header-links-wrapper .top-cart.three-cart-items.open li.item{display:none;}
++	.header-slider header#header .header-links-wrapper .top-cart.three-cart-items.open li.item.first{display:block;}
++	
++	
+ 	header#header .top-cart .block-content .actions .price{font-size:1.5em;}
+ 	
+ 	.header-slider header#header .dropdown-links.open {
+@@ -1918,27 +1998,23 @@
+ 		margin-top:0;
+ 	}
+ 	
+-	.header-slider-container .iosSlider .nav-buttons {
+-		margin-left:-384px;
+-	}
+-	.header-slider-container .next{right:0; margin-top:-30px;}
+-	.header-slider-container .prev{left:0; margin-top:-30px;}
++	.header-slider-container .next{margin-top:-30px;}
++	.header-slider-container .prev{margin-top:-30px;}
+ 	
+ 	.header-slider-container .iosSlider .slider .item h2,
+ 	.header-slider-container .iosSlider .slider .item h3{margin-left:-384px;}
+ 	.header-slider-container .iosSlider .slider .item h2{top:27%;}
+ 	
+-	.header-slider-container .iosSlider #item_header_slide_2 h2 {
++	.header-slider-container .iosSlider .item .left-caption-type-2 h2 {
+ 		top: 25%;
+ 	}
+-	.header-slider-container .iosSlider #item_header_slide_2 h3 {
++	.header-slider-container .iosSlider .item .left-caption-type-2 h3 {
+ 		top: 49%;
+ 	}
+-	.header-slider-container .iosSlider #item_header_slide_3 h2{top:13%;}
+-	.header-slider-container .iosSlider #item_header_slide_3 h2,
+-	.header-slider-container .iosSlider #item_header_slide_3 h3{
++	.header-slider-container .iosSlider .right-caption h2{top:13%;}
++	.header-slider-container .iosSlider .right-caption h2,
++	.header-slider-container .iosSlider .right-caption h3{
+ 		margin-left:-384px;
+-		
+ 	}
+ 	
+ 	
+@@ -2067,6 +2143,13 @@
+     .block-related li.item{
+ 		width:255px;
+     }
++	.block-related .no-slider li.item{
++		width:187px;
++    }
++	.block-related .no-slider li.item:nth-of-type(5n+5){
++		clear:both;
++	}
++
+ 	.block-related .prev{left:7px;}
+ 	.block-related .next{right:6px;}
+     
+@@ -2236,12 +2319,18 @@
+ 	}
+ 	
+ 	/* Adaptive */
++	.more-views li a{width:111px;}
++	
+ 	.block-related .no-slider li.item:nth-of-type(2n+2){
+ 		margin-right:0;
+ 	}
+ 	.block-related .no-slider li.item:nth-of-type(2n+1){
+ 		clear:left;
+ 	}
++	.block-related .no-slider li.item{
++		width:100%;
++	}
++	.block-related li.item .product-image img{width:100%;}
+ 	
+ 	
+     /* Global Styles ========================================================================= */
+@@ -2253,8 +2342,8 @@
+     
+     /* form elements */
+     
+-    .form-list input.input-text{	width: 100%;}
+-    .form-list, .input-box select { width:100%; }    
++    .form-list input.input-text{width: 100%;}
++    .form-list, .input-box select { width:100%; }
+     .form-list li, .form-list li .field { width:100%; margin-right:0; }
+     .form-list li .field + .field { margin-top:10px; }
+     .form-list li.street-address .input-box input.input-text { width:92%; }
+@@ -2325,8 +2414,6 @@
+ 	}
+ 	.header-slider-container .iosSlider .nav-buttons .next,
+ 	.header-slider-container .iosSlider .nav-buttons .prev{margin-top:-30px;}
+-	.header-slider-container .iosSlider .nav-buttons .prev{left:2%;}
+-	.header-slider-container .iosSlider .nav-buttons .next{right:2%;}
+ 	
+ 	header#header .header-links-wrapper .item-link .item-link-shadow{display:none;}
+ 	
+@@ -2349,7 +2436,7 @@
+ 		background-position: 16px -353px;
+ 	}
+ 	.small-slider .home-slider-conainer .prev,
+-	.small-slider .home-slider-conainer .next{font-size:1.77em; padding-bottom:5px;}
++	.small-slider .home-slider-conainer .next{font-size:1.77em; padding-bottom:5px; background:none!important;}
+ 	
+ 	.small-slider .home-slider-conainer .next{right:-33px!important; background-position:7px -398px;}
+ 	
+@@ -2425,6 +2512,7 @@
+ 		padding-top:7px!important;
+ 		padding-bottom:8px!important;
+ 		background-image:url(../images/header_item_login_links.png);
++		background-size:16px 16px;
+ 		background-position:center 12px;
+ 		background-repeat:no-repeat;
+ 	}
+@@ -2436,9 +2524,10 @@
+ 	header#header .dropdown-links li {
+ 		height: auto;
+ 	}
++	header#header .dropdown-links li.last a{background:none!important;}
+ 	
+ 	header#header .top-cart .block-content{
+-		top:39px;
++		top:39px!important;
+ 		width:245px;
+ 	}
+ 	header#header .top-cart .block-content .inner-wrapper{border-top:none;}
+@@ -2453,6 +2542,7 @@
+ 		text-indent:-10000px;
+ 		background-image:url(../images/account_marker.png);
+ 		background-position:center 12px;
++		background-size:15px 15px;
+ 		background-repeat:no-repeat;
+ 		padding-top:7px;
+ 		padding-bottom:8px;
+@@ -2471,7 +2561,7 @@
+ 	
+ 	
+ 	header#header .header-links-wrapper .lang-curr .content-block{
+-		top:39px;
++		top:39px!important;
+ 		left:auto;
+ 		right:0;
+ 		width:248px;
+@@ -2480,7 +2570,7 @@
+ 	
+ 	header#header .header-links-wrapper .block-subscribe .content-block {
+ 		left: -94px;
+-		top: 39px;
++		top: 39px!important;
+ 		width: 245px;
+ 		z-index:999999;
+ 	}
+@@ -2490,7 +2580,7 @@
+ 	header#header .dropdown-links ul{
+ 		left:-76px;
+ 		right:auto;
+-		top:39px;
++		top:39px!important;
+ 		width:227px;
+ 	}
+ 	header#header .dropdown-links ul li a.top-link-logout{text-indent:0;}
+@@ -2650,6 +2740,17 @@
+ 		content:'';
+ 	}
+ 	
++	
++	.nav-wide#nav ul li.touched > a,
++	.nav-wide#nav ul li.over > a,
++	.nav-wide#nav ul li.active > a{background:none;}
++	
++	.nav-wide#nav li{border:none!important;}
++	.nav-wide#nav li a{
++		border-bottom:1px solid rgba(255, 255, 255, 0.5)!important;
++	}
++	
++	
+ 	.breadcrumbs-wrapper .container_12 .grid_12{margin-left:auto; margin-right:auto;}
+ 	.breadcrumbs-wrapper .right{display:none;}
+ 	.breadcrumbs-wrapper .breadcrumbs{float:none;}
+@@ -2872,6 +2973,16 @@
+     
+ 	.cart-banner{margin-bottom:1.25em;}
+ 
++	
++	.cart .shipping-container,
++	.cart .discount{
++		float:none;
++		width:auto;
++	}
++	.cart .shipping{
++		margin-right:0;
++	}
++	
+ 	.cart .shipping .sp-methods{
+ 		text-align: center;
+ 	}
+@@ -2880,10 +2991,9 @@
+     .crosssell,
+     .shipping{margin-bottom:18px;}
+     
+-    .cart .shipping .form-list input{width: 205px;}
+-    .cart .shipping .form-list select{width:212px;}
++    .cart .shipping .form-list input{width:96%;}
++	.cart .shipping .form-list select{width:98%;}    
+     
+-    
+     .cart .totals{float:none;}
+     
+     #cart-accordion .crosssell{padding-left:9px;}
+@@ -3125,25 +3235,17 @@
+     
+     #footer .payment-options-box{padding:0 15px;}
+     #footer .payment-options-box h3{display:none;}
++		
++	.retina-device aside.sidebar section header .sidebar-block-button,
++	.retina-device header#header .nav-container > ul .menu-item-button{
++		background-image:url(../images/@x2/slider_arrows@x2.png);
++	}
+ 	
++	.retina-device header#header .links li .top-link-login,
++	.retina-device header#header .links li .top-link-logout{	background-image:url(../images/@x2/header_item_login_links@x2.png);}
+ 	
+-	@media only screen and (-Webkit-min-device-pixel-ratio: 1.5),
+-	only screen and (-moz-min-device-pixel-ratio: 1.5),
+-	only screen and (-o-min-device-pixel-ratio: 3/2),
+-	only screen and (min-device-pixel-ratio: 1.5)
+-	{
+-		aside.sidebar section header .sidebar-block-button,
+-		header#header .nav-container > ul .menu-item-button{
+-			background-image:url(../images/@x2/slider_arrows@x2.png);
+-		}
+-		
+-		header#header .links li .top-link-login,
+-		header#header .links li .top-link-logout{	background-image:url(../images/@x2/header_item_login_links@x2.png);}
+-		
+-		header#header .dropdown-links .dropdown-links-title{background-image:url(../images/@x2/account_marker@x2.png);}
+-		
+-		
+-	}
++	.retina-device header#header .dropdown-links .dropdown-links-title{background-image:url(../images/@x2/account_marker@x2.png);}
++	
+ }
+ 
+ /* #Mobile (Landscape)
+@@ -3225,14 +3327,18 @@
+ 		margin-right:14px;
+ 	}
+ 	.block-related .no-slider li.item:nth-of-type(2n+1){
+-		clear:none;
++		clear:both;
+ 	}
+ 	.block-related .no-slider li.item:nth-of-type(3n+3){
+ 		margin-right:0;
+ 	}
+ 	.block-related .no-slider li.item:nth-of-type(3n+1){
+-		clear:left;
++		clear:none;
+ 	}
++	.block-related .no-slider li.item{
++		width:193px;
++	}
++	.more-views ul.no-slider li a{width:85px;}
+ 	.more-views ul.no-slider li:nth-of-type(4n+4){
+ 		margin-right:0;
+ 	}
+@@ -3262,7 +3368,11 @@
+ 	.small-slider .home-slider-conainer .products-grid li.item{width:325px;}
+ 	.slider-2 .home-slider-conainer .products-grid li.item{width:210px;}
+ 	
++	.widget-slider-box .grid_3,
++	.widget-slider-box .grid_6,
++	.widget-slider-box .grid_9{margin-left:10px; margin-right:10px;}
+ 	
++	
+ 	/* Category Page ========================================================================= */
+     .products-grid li.item{float:left;}
+ 	
+Index: skin/frontend/meigeetheme/default/css/retina.css
+===================================================================
+--- skin/frontend/meigeetheme/default/css/retina.css	(.../1.1)	(revision 38)
++++ skin/frontend/meigeetheme/default/css/retina.css	(.../1.2)	(revision 38)
+@@ -154,7 +154,8 @@
+     .small-slider .home-slider-conainer .prev,
+     .small-slider .home-slider-conainer .next,
+     .slider-container .prev,
+-    .slider-container .next{
++    .slider-container .next,
++	aside.sidebar section header .sidebar-block-button{
+         background-image:url(../images/@x2/slider_arrows@x2.png);
+         background-size:15px 372px;
+     }
+@@ -171,6 +172,12 @@
+     .small-slider .home-slider-conainer .prev{background-position:13px -287px;}
+     .small-slider .home-slider-conainer .next{background-position:7px -314px;}
+     
++	aside.sidebar section header .sidebar-block-button{
++		background-position:10px -204px;
++	}
++	aside.sidebar section.active header .sidebar-block-button{
++		background-position:10px -282px;
++	}
+     
+     .small-slider .home-slider-conainer .prev{background-position: 26px -291px!important;}
+     .small-slider .home-slider-conainer .next {background-position: 8px -337px!important;}
+@@ -196,8 +203,10 @@
+     aside.sidebar section.block-progress dt{background-image:url(../images/@x2/opc_progress_marker@x2.png); background-size:18px 11px;}
+     aside.sidebar section.block-progress dt.complete,
+     aside.sidebar section.block-progress dd.complete{background-image:url(../images/@x2/opc_progress_marker_active@x2.png); background-size:18px 11px;}
+-    .dashboard .box-info .box .box-title a{background:url(../images/@x2/opc_progress_marker@x2.png) left 3px no-repeat; background-size:18px 11px;}
++    .dashboard .box-info .box .box-title a{background:url(../images/@x2/opc_progress_marker@x2.png) left 3px no-repeat; background-size:11px 11px;}
+     
++	
++	
+     .header-slider-container .prev,
+     .header-slider-container .next{opacity:1; filter:alpha(opacity=100);}
+     
+Index: skin/frontend/meigeetheme/default/css/styles-ie-8.css
+===================================================================
+--- skin/frontend/meigeetheme/default/css/styles-ie-8.css	(.../1.1)	(revision 38)
++++ skin/frontend/meigeetheme/default/css/styles-ie-8.css	(.../1.2)	(revision 38)
+@@ -31,6 +31,20 @@
+ 	border-right:none;
+ }
+ 
++#nav > li > a {
++    background:url(../images/ie/ie_menu_border.png) right top no-repeat;
++}
++#nav > li.last > a{
++	background:none;
++}
++
++#nav ul li.touched,
++#nav ul li.over,
++#nav ul li.active{
++	background:url(../images/ie/ie_menu_border.png) right top repeat;
++}
++
++
+ .cart .totals-border,
+ .cart .discount,
+ .cart .shipping,
+@@ -103,4 +117,11 @@
+ #footer .footer-wrapper .footer-columns-block ul li{background:url(../images/ie/ie_footer_links_divider.png) left bottom repeat-x;}
+ #footer .footer-wrapper .footer-columns-block ul li.last{background:none;}
+ 
+-
++.products-grid li.item .product-box,
++.products-list li.item .product-box{
++	border:1px solid #d7d7d7;
++	margin:0 -1px;
++	position:relative;
++	width: 100%;
++	overflow:hidden;
++}
+\ No newline at end of file
+Index: skin/frontend/meigeetheme/default/css/styles.css
+===================================================================
+--- skin/frontend/meigeetheme/default/css/styles.css	(.../1.1)	(revision 38)
++++ skin/frontend/meigeetheme/default/css/styles.css	(.../1.2)	(revision 38)
+@@ -268,6 +268,7 @@
+ .slider-container{position:relative; padding:60px 0 40px;}
+ .slider-container.widget-container{padding:0;}
+ .slider-container.widget-container .products-grid .price-box{margin-bottom:0;}
++.no-widget{padding:1.5em;}
+ 
+ .home-slider {position:relative;}
+ .home-slider-conainer{
+@@ -1249,7 +1250,7 @@
+ header#header .header-links-wrapper .item-link .block-title,
+ header#header .links li a.top-link-login, 
+ header#header .links li a.top-link-logout{
+-	padding:0.75em 0;
++	padding:9px 0;
+ 	height:24px;
+ 	cursor:pointer;
+ 	text-align:center;
+@@ -1357,9 +1358,9 @@
+ header#header .header-links-wrapper .item-link .block-title:hover,
+ header#header .header-links-wrapper .item-link .block-title.active{
+ 	position:relative;
+-	padding-top:0.91em;
+-	padding-bottom:0.91em;
+-	margin-bottom:-0.33em;
++	padding-top:11px;
++	padding-bottom:11px;
++	margin-bottom:-4px;
+ 	z-index:99;
+ }
+ 
+@@ -1482,6 +1483,7 @@
+ 	left:0;
+ 	top:46px;
+ 	width:100%;
++	z-index:999;
+ }
+ header#header .header-links-wrapper .block-subscribe .content-block .indent{
+ 	padding:1.8em 0;
+@@ -1686,22 +1688,22 @@
+ }
+ .header-slider-container .iosSlider .slider .item h3 a:hover{color:#444;}
+ 
+-.header-slider-container .iosSlider #item_header_slide_2 h2{top:61%;}
+-.header-slider-container .iosSlider #item_header_slide_2 h3{top:73%;}
++.header-slider-container .iosSlider .item .left-caption-type-2 h2{top:61%;}
++.header-slider-container .iosSlider .item .left-caption-type-2 h3{top:73%;}
+ 
+-.header-slider-container .iosSlider #item_header_slide_3 h2{text-align:right; margin-left:-517px; left:30%; top:26%;}
+-.header-slider-container .iosSlider #item_header_slide_3 h3{text-align:right; margin-left:-517px; left:30%; top:38%;}
++.header-slider-container .iosSlider .item .right-caption h2{text-align:right; margin-left:-517px; left:30%; top:26%;}
++.header-slider-container .iosSlider .item .right-caption h3{text-align:right; margin-left:-517px; left:30%; top:38%;}
+ 
+ .header-slider-container .iosSlider .container_12{position:relative;}
+ 
+-.header-slider-container .iosSlider .nav-buttons{position:absolute; top:50%; left:50%; margin-left:-490px;}
++.header-slider-container .iosSlider .nav-buttons{position:absolute; top:50%; left:0; width:100%; height:60px;}
+ 
+ #slider-wide .slider-narrow-buttons{display:none;}
+ 
+ 
+ .header-slider-container .prev,
+ .header-slider-container .next{
+-	top:50%;
++	top:0;
+ 	position: absolute;
+     display: block;
+     width:60px;
+@@ -1723,7 +1725,7 @@
+ .header-slider-container:hover .prev,
+ .header-slider-container:hover .next{opacity:1; filter:alpha(opacity=100);}
+ .header-slider-container .prev{
+-	left:-20%;
++	left:0;
+     background-position:20px -107px;
+     -moz-transition:left 300ms ease, opacity 300ms, background-color 300ms ease;
+     -webkit-transition:left 300ms ease, opacity 300ms, background-color 300ms ease;
+@@ -1731,7 +1733,7 @@
+     transition:left 300ms ease, opacity 300ms, background-color 300ms ease;
+ }
+ .header-slider-container .next{
+-	right:-20%;
++	right:0;
+     background-position: 23px -174px;
+     -moz-transition:right 300ms ease, opacity 300ms, background-color 300ms ease;
+     -webkit-transition:right 300ms ease, opacity 300ms, background-color 300ms ease;
+@@ -1743,6 +1745,10 @@
+ 	background-color:rgba(68, 68, 68, 0.8);
+ }
+ 
++.ie10 .header-slider-container {
++    top:-80px!important;
++}
++
+ #slider-wide > .container_12,
+ #slider-wide > .container_12 .grid_12{width:auto; margin:0; padding:0; position:static; display:block; float:none;}
+ 
+@@ -1775,8 +1781,8 @@
+ 	left:auto;
+ 	right:50%;
+ }
+-#header.slider-narrow .iosSlider .slider #item_header_slide_3.item .right-caption h2{top:12%;}
+-#header.slider-narrow .iosSlider .slider #item_header_slide_3.item .right-caption h3{top:32%;}
++#header.slider-narrow .iosSlider .slider .item .right-caption h2{top:12%;}
++#header.slider-narrow .iosSlider .slider .item .right-caption h3{top:32%;}
+ 
+ #header.slider-narrow .slider-narrow-buttons .next,
+ #header.slider-narrow .slider-narrow-buttons .prev{
+@@ -1893,8 +1899,6 @@
+ #nav ul li.over,
+ #nav ul li.active{
+ 	background-color:rgba(255, 255, 255, 0.2);
+-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#33ffffff,endColorstr=#33ffffff);
+-	zoom: 1;
+ }
+ #nav ul li.last { border-bottom:0; }
+ #nav ul li a {
+@@ -1919,9 +1923,79 @@
+ #nav li .shown-sub ul.shown-sub,
+ #nav li .shown-sub li div.shown-sub { left:100px; }
+ 
++
++/********** Wide Navigation > */
++.nav-wide#nav { position: static;}
++
++.nav-wide#nav ul li{padding:0;}
++.nav-wide#nav ul li a span:before{
++    padding-left:4px;
++	padding-right:4px;
++	line-height: 0.9em;
++}
++.nav-wide#nav ul li.touched,
++.nav-wide#nav ul li.over,
++.nav-wide#nav ul li.active{background:none;}
++
++.nav-wide#nav ul li.touched > a,
++.nav-wide#nav ul li.over > a,
++.nav-wide#nav ul li.active > a{
++	background-color:rgba(255, 255, 255, 0.2);
++	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#33ffffff,endColorstr=#33ffffff);
++	zoom: 1;
++}
++
++.nav-wide#nav li.tech { width:189px;}
++.nav-wide#nav li.nav-static-block {
++    padding-left: 30px;
++    width: 439px !important;
++	color:#fff;
++}
++.nav-wide#nav li.nav-static-block a.nav-fix { height: 0; line-height: 0; border:none!important;}
++.nav-wide#nav li.nav-static-block a.cat-thumb {
++    background-color: #fff;
++    padding: 4px;
++    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
++    float: left; 
++    margin-right: 20px;
++}
++.nav-wide#nav li.nav-static-block a.cat-thumb:hover { padding: 4px;}
++.nav-wide#nav li.nav-static-block h3 {
++    font-family: Arial, sans-serif;
++    font-size: 14px;
++    line-height: 18px;
++    text-transform: uppercase;
++    font-weight: 400;
++}
++.nav-wide#nav li.nav-static-block p {
++    font-size: 11px;
++    padding-bottom: 18px;
++}
++.nav-wide#nav li.nav-static-block button.button { margin-left: -5px;}
++
++/* All Levels */
++.nav-wide#nav li { position: static; clear:none; padding-left:0; background: none;}
++
++/* 2nd Level */
++.nav-wide#nav ul.level0,
++.nav-wide#nav .static-wrapper {width:943px; top:49px; padding:1.5em; z-index:99999;}
++.nav-wide#nav ul.level0 li {float:left; }
++.nav-wide#nav ul.level0 > li > a{color:#fff!important; text-decoration:none; margin: 0; padding: 0; border-bottom:1px solid #3e3e3e;}
++.nav-wide#nav ul.level0 > li > a:hover{padding:0; color:#cfcfcf!important;}
++.nav-wide#nav ul.level0 > li > a > span{border-bottom:1px solid #020202; padding: 11px 25px 11px 17px;}
++
++/* 3nd Level */
++.nav-wide#nav ul.level0 li.tech > ul{padding-left:0;}
++.nav-wide#nav ul.level0 ul {width:auto; position: relative; left:0; border:none; background: none; padding: 0 9px 9px 16px;}
++.nav-wide#nav ul.level0 ul li {float:none; border:none;}
++.nav-wide#nav ul.level0 ul li a{display:block;}
++
++.nav-wide#nav ul li.parent > a { text-transform:uppercase; color:#fff !important; font-weight:bold; }
++
+ /* Mobile Devices Styles */
+ #nav li.touched > ul{left:100px;}
+ #nav > li.touched > ul{left:0;}
++#nav.nav-wide li.touched > ul{left:0;}
+ /* ======================================================================================= */
+ 
+ 
+@@ -3114,6 +3188,9 @@
+ 	width:198px;
+ 	padding:1.5em 0;
+ }
++.block-related .no-slider li.item{
++	width:195px;
++}
+ .block-related li.item .grid-indent{
+ 	background-color:#FFFFFF;
+     box-shadow:0 0 10px rgba(0, 0, 0, 0.15);
+@@ -3420,7 +3497,7 @@
+ .header-slider header#header .header-wrapper{background:none; position:relative; z-index:9;}
+ .header-slider .header-slider-container{position:relative; margin-top:-98px; z-index:8;}
+ .header-slider.blocks-wrapper-2 header#header .header-links-wrapper,
+-.header-slider header#header .header-links-wrapper{background:none!important; position:relative; margin-top:-81px; z-index:9;}
++.header-slider header#header .header-links-wrapper{background:none!important; position:relative; margin-top:-81px; z-index:8;}
+ 
+ 
+ /* Header Links Big */
+@@ -3476,7 +3553,8 @@
+ .header-slider header#header .header-links-wrapper .item-link .top-cart .block-title{background-image:none;}
+ .header-slider header#header .links li a.top-link-login,
+ .header-slider header#header .links li a.top-link-logout{
+-	padding:1.75em 0 1.25em;
++	padding:27px 0 19px;
++	height:34px;
+ 	-moz-transition:padding 300ms ease, margin 300ms ease;
+ 	-webkit-transition:padding 300ms ease, margin 300ms ease;
+ 	-o-transition:padding 300ms ease, margin 300ms ease;
+@@ -3487,16 +3565,15 @@
+ .header-slider header#header .links li a.top-link-logout:hover,
+ .header-slider header#header .links li a.top-link-login.active,
+ .header-slider header#header .links li a.top-link-logout.active{
+-	/* padding-top:1.875em; */
+-	padding-bottom:1.5em;
+-	margin-top:-0.25em;
++	margin-top: -3px;
++	padding-bottom: 22px;
+ }
+ 
+ .header-slider header#header .header-links-wrapper .item-link .block-title:hover,
+ .header-slider header#header .header-links-wrapper .item-link .block-title.active{
+ 	/* padding-top:2.5em;
+ 	padding-bottom:1.83em; */
+-	margin-top:-0.33em;
++	margin-top:-3px;
+ }
+ 
+ .header-slider header#header .header-links-wrapper .lang-curr.open,
+@@ -3520,9 +3597,13 @@
+ 	height:180px;
+     margin-top:-100px;
+ }
+-.header-slider header#header .header-links-wrapper .block-subscribe .block-title{padding-bottom:2.16em;}
++.header-slider header#header .header-links-wrapper .block-subscribe .block-title{
++	padding-top: 29px;
++	padding-bottom: 22px;
++	height: 38px;
++}
+ .header-slider header#header .header-links-wrapper .block-subscribe:hover .block-title,
+-.header-slider header#header .header-links-wrapper .block-subscribe .block-title.active{padding-bottom:2.34em;}
++.header-slider header#header .header-links-wrapper .block-subscribe .block-title.active{}
+ .header-slider header#header .header-links-wrapper .block-subscribe:hover{margin-top:-4px; height:84px; margin-bottom:0;}
+ .header-slider header#header .header-links-wrapper .block-subscribe:hover .content-block{
+     top:84px;
+@@ -3550,9 +3631,13 @@
+ 	margin-top:-75px;
+ 	height:155px;
+ }
+-.header-slider header#header .header-links-wrapper .lang-curr .block-title{padding-bottom:2.16em;}
++.header-slider header#header .header-links-wrapper .lang-curr .block-title{
++	padding-top: 28px;
++	padding-bottom: 22px;
++	height: 39px;
++}
+ .header-slider header#header .header-links-wrapper .lang-curr:hover .block-title,
+-.header-slider header#header .header-links-wrapper .lang-curr .block-title.active{padding-bottom:2.34em;}
++.header-slider header#header .header-links-wrapper .lang-curr .block-title.active{}
+ .header-slider header#header .header-links-wrapper .lang-curr:hover{margin-top:-4px; height:84px; margin-bottom:0;}
+ .header-slider header#header .header-links-wrapper .lang-curr:hover .content-block{
+     top:84px;
+@@ -3585,9 +3670,9 @@
+ 	height:186px;
+ }
+ 
+-.header-slider header#header .header-links-wrapper .top-cart .block-title{padding-bottom:2.16em;}
++.header-slider header#header .header-links-wrapper .top-cart .block-title{padding-top:28px; padding-bottom:18px; height:42px;}
+ .header-slider header#header .header-links-wrapper .top-cart:hover .block-title,
+-.header-slider header#header .header-links-wrapper .top-cart .block-title.active{padding-bottom:2.34em;}
++.header-slider header#header .header-links-wrapper .top-cart .block-title.active{}
+ .header-slider header#header .header-links-wrapper .top-cart:hover{margin-top:-4px; height:84px; margin-bottom:0;}
+ .header-slider header#header .header-links-wrapper .top-cart:hover .block-content{
+     top:84px;
+@@ -3604,7 +3689,7 @@
+ .header-slider header#header .dropdown-links ul{display:block!important; top:80px;}
+ .header-slider header#header .dropdown-links .dropdown-links-title{padding-top:1.81em; padding-bottom:1.875em; background-color:rgba(198, 38, 38, 0.8);}
+ .header-slider header#header .dropdown-links:hover .dropdown-links-title,
+-.header-slider header#header .dropdown-links.active .dropdown-links-title{padding-bottom:1.93em; padding-top:1.875em;}
++.header-slider header#header .dropdown-links.active .dropdown-links-title{/* padding-bottom:1.93em; padding-top:1.875em; */}
+ .header-slider header#header .dropdown-links:hover,
+ .header-slider header#header .dropdown-links.active{margin-top:-4px; height:84px; margin-bottom:0;}
+ .header-slider header#header .dropdown-links:hover ul.links,
+@@ -3626,10 +3711,10 @@
+ .header-slider header#header .dropdown-links{
+ 	height:80px;
+ 	margin-top:0;
+-	-moz-transition:height 100ms ease, margin-top 100ms ease;
+-	-webkit-transition:height 100ms ease, margin-top 100ms ease;
+-	-o-transition:height 100ms ease, margin-top 100ms ease;
+-	transition:height 100ms ease, margin-top 100ms ease;
++	-moz-transition:height 50ms ease, margin-top 50ms ease;
++	-webkit-transition:height 50ms ease, margin-top 50ms ease;
++	-o-transition:height 50ms ease, margin-top 50ms ease;
++	transition:height 50ms ease, margin-top 50ms ease;
+ }
+ .header-slider header#header .dropdown-links.open{
+ 	margin-top:-108px;
+@@ -3844,6 +3929,7 @@
+ }
+ .cart .crosssell .product-img-box{padding:6px; margin-bottom:1.16em;}
+ .cart .crosssell .product-image { display:block; }
++.cart .crosssell .product-image img{width:100%;}
+ .cart .crosssell .product-details {}
+ .cart .crosssell .product-name{
+ 	margin-bottom:0.88em;
+Index: skin/frontend/meigeetheme/default/css/skin.css
+===================================================================
+--- skin/frontend/meigeetheme/default/css/skin.css	(.../1.1)	(revision 38)
++++ skin/frontend/meigeetheme/default/css/skin.css	(.../1.2)	(revision 38)
+@@ -74,9 +74,16 @@
+ .small-slider .small-slider-text-box .price-box,
+ header#header .menu-button,
+ aside.sidebar section.active header .sidebar-block-button,
+-aside.sidebar section.block-layered-nav .btn-remove{background-color:#e94645;}
++aside.sidebar section.block-layered-nav .btn-remove,
++#nav ul li.touched,
++#nav ul li.over,
++#nav ul li.active,
++#nav ul,
++#nav div{background-color:#e94645;}
+ 
+ 
++.nav-wide#nav ul.level0,
++.nav-wide#nav .static-wrapper,
+ .my-wishlist input.quantity-decrease:hover,
+ .my-wishlist input.quantity-increase:hover,
+ .add-to-cart input.quantity-decrease:hover,
+@@ -86,8 +93,6 @@
+ #nav ul,
+ #nav div{
+ 	background-color:rgba(233, 70, 69, 0.9);
+-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#E6e94645,endColorstr=#E6e94645);
+-	zoom: 1;
+ }
+ 
+ 
+Index: skin/frontend/meigeetheme/default/css/grid_768.css
+===================================================================
+--- skin/frontend/meigeetheme/default/css/grid_768.css	(.../1.1)	(revision 38)
++++ skin/frontend/meigeetheme/default/css/grid_768.css	(.../1.2)	(revision 38)
+@@ -338,11 +338,18 @@
+ 	clear:left;
+ }
+ 
++.more-views .no-slider li:nth-of-type(3n+3){
++	margin-right:0;
++}
++.more-views .no-slider li:nth-of-type(3n+1){
++	clear:both;
++}
++
+ .block-related .no-slider li.item:nth-of-type(5n+5){
+ 	margin-right:0;
+ }
+ .block-related .no-slider li.item:nth-of-type(5n+1){
+-	clear:left;
++	clear:none;
+ }
+ 
+ /* 2 columns list */
+@@ -472,6 +479,60 @@
+ 	width:245px;
+ }
+ 
++#nav.nav-wide ul.level0, #nav.nav-wide .static-wrapper{
++	top:133px;
++	width:712px;
++}
++
++.header-slider header#header .three-elements.header-links-wrapper .top-cart.open.three-cart-items,
++.header-slider header#header .three-elements.header-links-wrapper .top-cart.open.three-cart-items:hover{
++	height: 309px;
++	margin-top: -229px;
++}
++	
++
++header#header .top-cart #mini-cart li.item.first {
++	display: block;
++}
++	
++.header-slider header#header .header-links-wrapper .top-cart.open.one-cart-item, 
++.header-slider header#header .header-links-wrapper .top-cart.open.one-cart-item:hover{
++	height: 295px;
++	margin-top: -215px;
++}
++
++
++.header-slider header#header .header-links-wrapper .top-cart.open.two-cart-items,
++.header-slider header#header .header-links-wrapper .top-cart.open.two-cart-items:hover{
++	 height: 327px;
++	margin-top: -247px;
++}
++
++.header-slider header#header .header-links-wrapper.three-elements .top-cart.open.one-cart-item.one-cart-item,
++.header-slider header#header .header-links-wrapper.three-elements .top-cart.open.one-cart-item.one-cart-item:hover{
++	height: 259px;
++	margin-top: -179px;
++}
++
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open.one-cart-item, 
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open.one-cart-item:hover {
++	height: 259px;
++	margin-top: -179px;
++}
++
++.header-slider header#header .header-links-wrapper.three-elements .top-cart.open.two-cart-items.two-cart-items, 
++.header-slider header#header .header-links-wrapper.three-elements .top-cart.open.two-cart-items.two-cart-items:hover {
++	height: 309px;
++	margin-top: -229px;
++}
++
++
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open.no-items, 
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open.no-items:hover {
++	height: 186px;
++	margin-top: -106px;
++}
++
+ .data-table td{
+ 	padding:9px;
+ }
+@@ -484,11 +545,12 @@
+ }
+ 
+ .home-slider-conainer .products-grid li.item{
+-	width:255px;
++	width:187px;
+ }
++.home-slider-conainer .products-grid li.item .indent{margin-right:10px;}
+ 
+ .slider-2-wrapper .home-slider-conainer .products-grid li.item {
+-	width:292px;
++	width:183px;
+ }
+ .slider-2-wrapper .slider-container .prev {
+ 	left: 0;
+@@ -516,7 +578,7 @@
+ 	padding: 4em 0;
+ }
+ 
+-header#header .top-cart .mini-products-list li.item.last{display:none;}
++header#header .top-cart .mini-products-list.last-remove li.item.last{display:none;}
+ 
+ .header-slider header#header .header-links-wrapper .top-cart.open, 
+ .header-slider header#header .header-links-wrapper .top-cart.open:hover{
+@@ -524,6 +586,12 @@
+ 	margin-top: -264px;
+ }
+ 
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open,
++.header-slider header#header .header-links-wrapper.two-elements .top-cart.open:hover{
++	height:309px;
++	margin-top:-229px;
++}
++
+ .header-slider.blocks-wrapper-2 header#header .header-links-wrapper,
+ .header-slider header#header .header-links-wrapper{
+ 	margin-top:-80px;
+@@ -539,6 +607,21 @@
+ header#header .top-cart .block-content .mini-products-list .product-details {
+ 	width:110px;
+ }
++
++header#header .two-elements .top-cart .block-content .mini-products-list .product-details {
++	width:85%;
++}
++
++header#header .three-elements .top-cart .block-content .mini-products-list .product-details {
++	width:76%;
++}
++
++.header-slider header#header .header-links-wrapper .top-cart.open,
++.header-slider header#header .header-links-wrapper .top-cart.open:hover{
++	height:326px;
++	margin-top:-246px;
++}
++
+ header#header .top-cart .block-content .actions .price{font-size:1.5em;}
+ 
+ .header-slider header#header .dropdown-links.open {
+@@ -569,16 +652,19 @@
+ 	margin-top:-112px;
+ }
+ 
++.header-slider header#header .header-links-wrapper .lang-curr.open.one-item, 
++.header-slider header#header .header-links-wrapper .lang-curr.open.one-item:hover{
++	height:153px;
++	margin-top:-73px;
++}
+ 
++
+ .header-slider .header-slider-container{
+ 	margin-top:0;
+ }
+ 
+-.header-slider-container .iosSlider .nav-buttons {
+-	margin-left:-384px;
+-}
+-.header-slider-container .next{right:0; margin-top:-30px;}
+-.header-slider-container .prev{left:0; margin-top:-30px;}
++.header-slider-container .next{margin-top:-30px;}
++.header-slider-container .prev{margin-top:-30px;}
+ 
+ .header-slider-container .iosSlider .slider .item h2,
+ .header-slider-container .iosSlider .slider .item h3{margin-left:-384px;}
+@@ -723,6 +809,13 @@
+ .block-related li.item{
+ 	width:255px;
+ }
++.block-related .no-slider li.item{
++	width:187px;
++}
++.block-related .no-slider li.item:nth-of-type(5n+5){
++	clear:both;
++}
++
+ .block-related .prev{left:7px;}
+ .block-related .next{right:6px;}
+ 
+@@ -810,7 +903,6 @@
+ width: 116px;
+ }
+ 
+-	
+ .sorter { padding: 1.01em 15px 1.01em 25px}
+ 
+ .sidebar-category h2 {
+@@ -838,8 +930,7 @@
+ 	clear: both;
+ 	float:none;
+ }
+-	
+-	
++
+ /* `Clear Floated Elements
+ ----------------------------------------------------------------------------------------------------*/
+ 
+Index: skin/frontend/meigeetheme/default/css/styles-ie-9up.css
+===================================================================
+--- skin/frontend/meigeetheme/default/css/styles-ie-9up.css	(.../1.1)	(revision 38)
++++ skin/frontend/meigeetheme/default/css/styles-ie-9up.css	(.../1.2)	(revision 38)
+@@ -26,6 +26,9 @@
+  /* Styles for IE9 +  */
+ 
+ /* Gradient Filter Clear */
++.nav-wide#nav ul li.touched > a,
++.nav-wide#nav ul li.over > a,
++.nav-wide#nav ul li.active > a,
+ .block-related .next:hover,
+ .block-related .prev:hover,
+ .block-related .prev,

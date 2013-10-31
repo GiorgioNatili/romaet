@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Documentation</title>
+	<link rel="stylesheet" media="all" href="css/bootstrap.css" />
+	<link rel="stylesheet" media="all" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="js/highlighter/jquery.snippet.min.css" />
+	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.scrollTo-min.js"></script>
+	<script type="text/javascript" src="js/jquery.animate-colors-min.js"></script>
+	<script type="text/javascript" src="js/highlighter/jquery.snippet.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&subset=latin,latin-ext,cyrillic' rel='stylesheet' type='text/css'>
+
+	<script type="text/javascript">
+	$(function() {
+
+	    function scroll(direction) {
+
+	        var scroll, i,
+	                positions = [],
+	                here = $(window).scrollTop(),
+	                collection = $('.post');
+
+	        collection.each(function() {
+	            positions.push(parseInt($(this).offset()['top'],10));
+	        });
+
+	        for(i = 0; i < positions.length; i++) {
+	            if (direction == 'next' && positions[i] > here) { scroll = collection.get(i); break; }
+	            if (direction == 'prev' && i > 0 && positions[i] >= here) { scroll = collection.get(i-1); break; }
+	        }
+
+	        if (scroll) {
+	            $.scrollTo(scroll, {
+	                duration: 750       
+	            });
+	        }
+
+	        return false;
+	    }
+
+	    $("#next,#prev").click(function() {        
+	        return scroll($(this).attr('id'));        
+	    });
+
+	    $(".scrolltoanchor").click(function() {
+	        $.scrollTo($($(this).attr("href")), {
+	            duration: 750
+	        });
+	        return false;
+	    });
+
+	});
+	</script>
+</head>
+<body>
+	<div class="row">
+		<div class="span3 left-block">
+			<div id="nav-dock">
+				<h1 id="logo">
+					<span>&nbsp;</span>
+				</h1>
+				<a href="#start" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>Start</span>
+				</a>
+				<a href="#features" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>Features</span>
+				</a> 
+				<!-- <a href="#structure" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>Package Structure</span>
+				</a>  -->
+				<a href="#installation" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>Template Installation</span>
+				</a> 
+				<a href="#configuring" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>Template Configuring</span>
+				</a>
+				<a href="#retinaready" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>Retina Ready Options</span>
+				</a>
+				<a href="#homepage" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>Home Page</span>
+				</a>
+				<a href="#headerslider" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>Header Slider</span>
+				</a>
+				<a href="#widgets" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>UI Widgets</span>
+				</a>
+				<a href="#staticblocks" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>Static Blocks</span>
+				</a>
+				<a href="#versions" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>Versions</span>
+				</a>
+				<a href="#faq" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>FAQ</span>
+				</a>
+				<a href="#conclusion" class="scrolltoanchor">
+					<div class="sym">&sect;</div>
+					<span>Conclusion</span>
+				</a>
+			</div>
+			<div class="copy"><a href="http://meigeeteam.com">&copy; MeigeTeam.com</a></div>
+		</div>
+		<div class="span10 offset3 right-col">
+			<div id="start" class="post first">
+				<h2 class="section-title">"Colorstorm" - premium magento theme</h2>
+				<ul class="theme-info">
+					<li>Created: 26 February 13</li>
+					<li>By: <a href="http://meigeeteam.com">MeigeeTeam</a></li>
+					<li>Email: <a href="mailto:nick@meigeeteam.com">nick@meigeeteam.com</a></li>
+					<li>Current Package Version is <strong>1.3</strong></li>
+				</ul>
+				<p>"Colorstorm" is premium magento template suitable for any type of store.</p>
+				<p>Why do we call our template <strong>premium</strong>? Answer is very simple:
+					<ul>
+						<li>"Colorstorm" is <strong>HTML5</strong> magento theme</li>
+						<li>Our template equipped with very powerfull admin module to make work with the magento really easy</li>
+						<li>UI widgets are available</li>
+						<li>Every .phtml file was recoded using <a href="http://960.gs/">960 Grid System</a></li>
+						<li>It is not just a theme, it is standalone package</li>
+						<li>We use <strong>SVN</strong> to make an updating process more easiest and painless even after a ton of customisation work done</li>
+						<li>and more...</li>
+					</ul></p>
+			</div>
+			<div id="features" class="post">
+				<h2 class="section-title">Template Features</h2>
+				<div class="float-left-2 m-indent">
+					<a href="http://en.wikipedia.org/wiki/HTML5" target="_blank"><img src="img/features/html5_logo.png" /></a>
+					<p>We didn't just replace magento default doctype with html5 one, we re-coded magento template files using html5 tags</p>
+				</div>
+				<div class="float-left-2">
+					<a href="http://en.wikipedia.org/wiki/CSS3#CSS_3" target="_blank"><img src="img/features/css3_logo.png" /></a>
+					<p>We use CSS3 features in our work</p>
+				</div>
+				<div class="clear"></div>
+				<div class="m-indent-2">
+					<a href="http://960.gs/" target="_blank"><img src="img/features/grid960.png" /></a>
+					<p>We re-coded every magento template file using <strong>grid960</strong> principles. Why grid960? It gives mega opportunities to customize template such as easy changing columns amount without any css coding. In combination with our <a href="#widgets">widgets</a> (that is made using grid960 too) you get amazing tool to make your store absolutelly different from primordial template.</p>
+				</div>
+				<h3>Javascript scripts used in our template</h3>
+				<div class="float-left-3 m-indent">
+					<a href="http://jquery.com" target="_blank"><img src="img/features/jquery_logo.png" /></a>
+				</div>
+				<div class="float-left-3 m-indent">
+					<a href="http://www.iosscripts.com/iosslider/" target="_blank"><img src="img/features/iosslider.png" /></a>
+				</div>
+				<div class="float-left-3">
+					<a href="http://fancyapps.com/fancybox" target="_blank"><img src="img/features/fancybox_logo.png" /></a>
+				</div>
+				<div class="clear"></div>
+				<div class="float-left-3 m-indent">
+					<a href="http://www.professorcloud.com/mainsite/cloud-zoom.htm" target="_blank"><img src="img/features/cloud_logo.png" /></a>
+				</div>
+				<div class="float-left-3 m-indent">
+					<a href="http://gsgd.co.uk/sandbox/jquery/easing/" target="_blank"><img src="img/features/easing_logo.png" /></a>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<!-- <div id="structure" class="post">
+				<h2 class="section-title">Sample Title</h2>
+				
+			</div> -->
+			<div id="installation" class="post">
+				<h2 class="section-title">Installation</h2>
+				Installation of our template is really easy, you just need to make a few steps to get it done.
+				<div class="row-colls last">
+					<h3>1. Cache</h3>
+					<img class="left-coll" src="img/media/cache.png" />
+					<p>Recolorline the cache. We recommend you to disable it at all until magento is not configured.</p>
+					<div class="clear"></div>
+					<h3>2. Upload Files</h3>
+					<img class="left-coll" src="img/media/ftp.png" />
+					<p>Our theme is compatible with latest (for now <strong>1.7.0.0</strong>) version of magento community.</p>
+					<p>Using your favorite FTP manager upload folders <span class="dfn-code">app</span> and <span class="dfn-code">skin</span> of <span class="dfn-code">theme</span> directory to root of your magento. <strong>No one magento default file will be overridden</strong>.</p>
+					<div class="clear"></div>
+					<h3>3. Re-login</h3>
+					<img class="left-coll" src="img/media/login.png" />
+					<p>We provide 3 additional modules with the theme and you have to log out and log in again for correct installation all of them.</p>
+					<div class="clear"></div>
+					<h3>4. Set Package</h3>
+					<img class="left-coll" src="img/media/packagename.png" />
+					<p>Go to <span class="dfn-code">System/Configuration/Design</span> page of your admin panel and set <span  class="dfn-code">Current Package Name</span> as <em>meigeetheme</em></p>
+					<div class="clear"></div>
+					<p>That's it. Template is installed.</p>
+					<p>Or you can use the demo data that included in this package to get the same view as on the demo.</p>
+					To get the same view as on the demo just follow steps below:
+					<ul>
+						<li>Upload <em>sources/demo/media</em> folder to the root directory of your magento</li>
+						<li>Import <em>sources/demo/dump.sql.gz</em> into your database</li>
+						<li>Install magemto using this database</li>
+					</ul>
+					<p>
+						Please notice: <strong>Dump file must be imported into your database prior magento installation</strong>
+					</p>
+				</div>
+				<h1></h1>
+			</div>
+			<div id="configuring" class="post">
+				<h2 class="section-title">Template Configuring</h2>
+				<p>Our template is delivered with <strong>Meigee/ Theme Options</strong> module to help our clients with easy configuring magento without coding.</p>
+				<div class="row-colls last">
+					<img class="left-coll" src="img/media/themeoptions.png" />
+					<p>Go to <span class="dfn-code">Meigee/Theme Options</span> menu tab in the admin panel to see a block with available options. We separated them into 3 logical sub-blocks.
+						<ol>
+							<li><a href="#general_options" class="scrolltoanchor">General Options</a></li>
+							<li><a href="#product_page" class="scrolltoanchor">Product Page</a></li>
+							<li><a href="#sidebar_blocks" class="scrolltoanchor">Sidebar Blocks</a></li>
+							<li><a href="#header_slider" class="scrolltoanchor">Header Slider</a></li>
+						</ol></p>
+				</div>
+				<p>Let's take a look at each one of them.</p>
+				<h4 id ="general_options">General Options</h4>
+				<div class="left-coll">
+					<a href="img/media/themeoptions_general_opened.png" target="_blank"><img src="img/media/themeoptions_general_closed.png" /></a>
+				</div>
+				<ul class="options-list">
+					<li class="section">
+						<span class="dfn">Appearance</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Font replacement</span></div>
+							<span class="dfn-options">options: <em><strong>cufon font</strong>, google fonts</em></span>
+						</div>
+						Allows you to replace fonts (not all) with predefined cufon font or with any of <a href="http://www.google.com/webfonts#ChoosePlace:select">google fonts</a> collection. For google fonts you can set font size, line height and font weight
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Background Patern</span></div>
+							<span class="dfn-options">options: <em>65 paterns</em></span>
+						</div>
+						 Allows you to set your favorite patern as background of your stores
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">...or upload your own one</span></div>
+							<span class="dfn-options">options: <em>JPG,GIF,PNG</em></span>
+						</div>
+						 Allows you to upload your own background patern
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Custom Colors</span></div>
+							<span class="dfn-options">options: <em>HEX color</em></span>
+						</div>
+						 Allows you to set your favorite colors to decorate template
+					</li>
+					<li class="section">
+						<span class="dfn">Layout</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Sidebar position</span></div><span class="dfn-options">options: <em>left, <strong>right</strong></em></span>
+						</div>
+						Our template uses 2 columns structure, you can change position of sidebar in just one click</li>
+					<!-- <li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Grid</span></div>
+							<span class="dfn-options">options: <em>standard, small</em></span>
+						</div>
+						
+					</li> -->
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">My cart page</span></div>
+							<span class="dfn-options">options: <em>standard, <strong>accordion</strong></em></span>
+						</div>
+						You can choose between two views of my cart page: standard view or accordion view
+					</li>
+					<!-- <li class="section">
+						<span class="dfn">Menu</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Menu Type</span></div>
+							<span class="dfn-options">options: <em>standard, <strong>wide</strong></em></span>
+						</div>
+						Allows to change menu type
+					</li> -->
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Home Button</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable home button in the menu
+					</li>
+					<li class="section">
+						<span class="dfn">Language Switcher</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Status</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to change language switcher view
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Language Label</span></div>
+							<span class="dfn-options">options: <em>text</em></span>
+						</div>
+						Allows to enable/disable label in language switcher
+					</li>
+					<li class="section">
+						<span class="dfn">Currency Switcher</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Status</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to change currency switcher view
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Currency Label</span></div>
+							<span class="dfn-options">options: <em>text</em></span>
+						</div>
+						Allows to enable/disable label in currency switcher
+					</li>
+					<li class="section">
+						<span class="dfn">Fancybox</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Status</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable fancybox
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Homepage</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable fancybox on the homepage
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Products Listing</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable fancybox on the products listing page
+					</li>
+					<li class="section">
+						<span class="dfn">Other Options</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">"To Top" Button</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable "To Top" button at the bottom of the store pages
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Noty notices</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to replace standard magento notice messages with <a href="http://needim.github.com/noty/" target="_blank">Noty</a>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Badge "New" for products</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable badge "New" for new products
+					</li>
+				</ul>
+				<h4 id="product_page">Product Page</h4>
+				<div class="left-coll">
+					<a href="img/media/themeoptions_productpage_opened.png" target="_blank"><img src="img/media/themeoptions_productpage_closed.png" /></a>
+				</div>
+
+				<ul class="options-list">
+					<li class="section">
+						<span class="dfn">Product Page Options</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Product Page layout</span></div>
+							<span class="dfn-options">options: <em>small, medium, large, extra large</em></span>
+						</div>
+						Allows to choose a product image size on a product page
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">More views block</span></div>
+							<span class="dfn-options">options: <em>simple list, slider</em></span>
+						</div>
+						Allows to set how block will be displayed
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Collateral block</span></div>
+							<span class="dfn-options">options: <em>simple list, tabs, accordion</em></span>
+						</div>
+						Allows to set how block will be displayed
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Related products block</span></div>
+							<span class="dfn-options">options: <em>simple list, slider</em></span>
+						</div>
+						Allows to set how block will be displayed
+					</li>
+				</ul>
+				<h4 id="sidebar_blocks">Sidebar Blocks</h4>
+				<div class="left-coll">
+					<a href="img/media/themeoptions_sidebarblocks_opened.png" target="_blank"><img src="img/media/themeoptions_sidebarblocks_closed.png" /></a>
+				</div>
+				<ul class="options-list">
+					<li class="section">
+						<span class="dfn">Categories</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Status</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable block in the sidebar
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Display as</span></div>
+							<span class="dfn-options">options: <em>simple list, tabs, accordion</em></span>
+						</div>
+						Allows to set how block will be displayed
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Closed by default</span></div>
+							<span class="dfn-options">options: <em>yes, no</em></span>
+						</div>
+						Allows to close block by default
+					</li>
+					<li class="section">
+						<span class="dfn">Shop By</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Status</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable block in the sidebar
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Display as</span></div>
+							<span class="dfn-options">options: <em>simple list, tabs, accordion</em></span>
+						</div>
+						Allows to set how block will be displayed
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Closed by default</span></div>
+							<span class="dfn-options">options: <em>yes, no</em></span>
+						</div>
+						Allows to close block by default
+					</li>
+					<li class="section">
+						<span class="dfn">Compare Products</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Status</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable block in the sidebar
+					</li>
+					<li class="section">
+						<span class="dfn">Compared Products</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Status</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable block in the sidebar
+					</li>
+					<li class="section">
+						<span class="dfn">Viewed Products</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Status</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable block in the sidebar
+					</li>
+					<li class="section">
+						<span class="dfn">Wishlist</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Status</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable block in the sidebar
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Display as slider</span></div>
+							<span class="dfn-options">options: <em>yes, no</em></span>
+						</div>
+						Allows to set how block will be displayed
+					</li>
+					<li class="section">
+						<span class="dfn">Popular Tags</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Status</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable block in the sidebar
+					</li>
+					<li class="section">
+						<span class="dfn">My orders</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Status</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable block in the sidebar
+					</li>
+					<li class="section">
+						<span class="dfn">Newsletter</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Status</span></div>
+							<span class="dfn-options">options: <em>enable, disable</em></span>
+						</div>
+						Allows to enable/disable block in the sidebar
+					</li>
+				</ul>
+
+				<h4 id="header_slider">Header Slider</h4>
+				<ul class="options-list">
+					<li class="section">
+						<span class="dfn">Product Page Options</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Enabled</span></div>
+							<span class="dfn-options">options: <em>yes, no</em></span>
+						</div>
+						Allows to disable slider.
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Show only on the homepage</span></div>
+							<span class="dfn-options">options: <em>yes, no</em></span>
+						</div>
+						Allows to show the slider on any page
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Slideshow Speed</span></div>
+							<span class="dfn-options">options: <em>integer</em></span>
+						</div>
+						Allows to set speed of slideshow.
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Animation Speed</span></div>
+							<span class="dfn-options">options: <em>integer</em></span>
+						</div>
+						Allows to set speed of animation.
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Randomize slide order</span></div>
+							<span class="dfn-options">options: <em>yes, no</em></span>
+						</div>
+						Allows to randomize slide order.
+					</li>
+				</ul>
+			</div>
+			<div id="retinaready" class="post">
+				<h2 class="section-title">Retina Ready Options</h2>
+				<p>"Retina Ready" feature is enabled by default but you need follow a few steps to make your own content be retina ready too.</p>
+				<ol>
+					<li>To use your own images in content you should use following code:
+				<pre class="code">&lt;img src=&quot;path/to/image&quot; data-srcX2=&quot;path/to/retinaready/image&quot;&gt;</pre></li>
+					<li>If you want to add some other languages you need to put your own retina ready images of flags into <em>skin/frontend/meigeetheme/default/images/@x2/</em> and name them as "English@x2". The same step you need to follow for currency images.</li>
+					<li>Upload your own retina ready logo into "Meigee -> Theme Options -> General Options -> Custom Logo" tab</li>
+				</ol>
+			</div>
+			<div id="homepage" class="post">
+				<h2 class="section-title">Homepage</h2>
+				<p>To get the same view of your homepage as on the demo you should follow a few steps below:</p>
+				<ol>
+					<li>Add some products to your magento store and <strong>mark them as new</strong>.</li>
+					<li>Navigate to <em>CMS->Pages->Home page->Design Tab</em> and set <strong>Layout</strong> field as <em>1 Column</em></li>
+					<li>Navigate to <em>CMS->Pages->Home page->Content Tab</em></li>
+					<li>Hide code editor</li>
+					<li>Put following code into section <strong>Content</strong></li>
+				</ol>
+				<pre class="html">{{widget type=&quot;meigeewidgets/featuredcategory&quot; featured_category=&quot;category/3&quot; template=&quot;meigee/meigeewidgets/slider_small.phtml&quot; products_amount=&quot;10&quot; slider_small_speed=&quot;1000&quot; slider_small_easing=&quot;easeInQuad&quot; widget_small_id=&quot;6615&quot;}}<br/>{{widget type=&quot;meigeewidgets/featuredcategory&quot; featured_category=&quot;category/5&quot; template=&quot;meigee/meigeewidgets/slider.phtml&quot; products_amount=&quot;10&quot; slider_speed=&quot;1000&quot; slider_displayslideqty=&quot;4&quot; slider_moveslideqty=&quot;1&quot; slider_easing=&quot;easeInQuad&quot; widget_id=&quot;7646&quot;}}<br/>{{widget type=&quot;meigeewidgets/featuredcategory&quot; featured_category=&quot;category/5&quot; template=&quot;meigee/meigeewidgets/slider_2.phtml&quot; products_amount=&quot;10&quot; slider_2_speed=&quot;1000&quot; slider_2_easing=&quot;easeInQuad&quot; widget_2_id=&quot;6592&quot;}}</pre>
+			</div>
+
+			<div id="headerslider" class="post">
+				<h2 class="section-title">Header Slider</h2>
+				First of all you need to create a few static blocks with content for slides. You can create static blocks with following content or with your own one.
+
+				<h3>Predefined Demo Slides</h3>
+
+				<span class="dfn-code">header_slide_1</span>
+				<pre class="html">&lt;img class=&quot;slider-product-img&quot; src=&quot;{{media url=&quot;wysiwyg/header_slider_img.jpg&quot;}}&quot; alt=&quot;&quot; /&gt;<br/>&lt;h2 class=&quot;container_12&quot;&gt;Fell in love with our&lt;br /&gt;new collection&lt;/h2&gt;<br/>&lt;h3 class=&quot;container_12&quot;&gt;&lt;a href=&quot;#&quot;&gt;Check it Now&lt;/a&gt;&lt;/h3&gt;</pre>
+				<span class="dfn-code">header_slide_2</span>
+				<pre class="html">&lt;img class=&quot;slider-product-img&quot; src=&quot;{{media url=&quot;wysiwyg/header_slider_img_2.jpg&quot;}}&quot; alt=&quot;&quot; /&gt;<br/>&lt;h2 class=&quot;container_12&quot;&gt;Feel the touch of nature with our&lt;br /&gt;new collection Sleepwear&lt;/h2&gt;<br/>&lt;h3 class=&quot;container_12&quot;&gt;&lt;a href=&quot;#&quot;&gt;Check it Now&lt;/a&gt;&lt;/h3&gt;</pre>
+				<span class="dfn-code">header_slide_3</span>
+				<pre class="html">&lt;img class=&quot;slider-product-img&quot; src=&quot;{{media url=&quot;wysiwyg/header_slider_img_3.jpg&quot;}}&quot; alt=&quot;&quot; /&gt;<br/>&lt;h2 class=&quot;container_12&quot;&gt;Explore the top of&lt;br /&gt;our products&lt;/h2&gt;<br/>&lt;h3 class=&quot;container_12&quot;&gt;&lt;a href=&quot;#&quot;&gt;Check it Now&lt;/a&gt;&lt;/h3&gt;</pre>
+
+				<p>Then to configure your header slider navigate to "Meigee -> Theme Options -> Header Slider" and set which static blocks will be displayed in the slider.</p>
+			</div>
+			<div id="widgets" class="post">
+				<h2 class="section-title">UI Widgets</h2>
+				<blockquote>
+					Magento Widgets allow business users with no technical knowledge to easily add dynamic content (including product data, for example) to pages in Magento Stores. This allows for greater control and flexibility in creating informational and marketing content through administrator tools, enabling intuitive and efficient control of content
+					<p style="text-align:right;"><a href="http://www.magentocommerce.com/blog/comments/introducing-magento-widgets/">Introducing Magento Widgets</a></p>
+				</blockquote>
+				<p>We have created a few additional widgets to allow you to show your products as slider/grid/list on any of pages without coding, show disaply your latest tweets, show your social link anywhere.</p>
+				<p><strong>Meigee/Featured Category widget</strong> and <strong>Meigee/New Products widget</strong> - to show your products as slider/grid/list with configuring options</p>
+				<div class="float-left m-indent">
+					<a href="img/media/widget_slider_opened.png" target="_blank"><img src="img/media/widget_slider_closed.png" /></a>
+					<div>Slider View</div>
+				</div>
+				<div class="float-left m-indent">
+					<a href="img/media/widget_grid_opened.png" target="_blank"><img src="img/media/widget_grid_closed.png" /></a>
+					<div>Grid View</div>
+				</div>
+				<div class="float-left">
+					<a href="img/media/widget_list_opened.png" target="_blank"><img src="img/media/widget_list_closed.png" /></a>
+					<div>List View</div>
+				</div>
+				<div class="clear"></div>
+				<ul class="options-list">
+					<li class="section">
+						<span class="dfn">Slider Options</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Amount of Products to Display</span></div>
+							<span class="dfn-options">options: <em>any integer</em></span>
+						</div>
+						Allows to set how many products you want to display
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Auto Slide</span></div>
+							<span class="dfn-options">options: <em>any integer</em></span>
+						</div>
+						The time (in milliseconds) that a slide will wait before automatically navigating to the next slide
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Auto Slide Timer</span></div>
+							<span class="dfn-options">options: <em>any integer</em></span>
+						</div>
+						The time (in milliseconds) required for all automatic animations to move between slides
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Auto Slide Trans Timer</span></div>
+							<span class="dfn-options">options: <em>any integer</em></span>
+						</div>
+						The time (in milliseconds) required for all automatic animations to move between slides
+					</li>
+				</ul>
+				<ul class="options-list">
+					<li class="section">
+						<span class="dfn">Grid Options</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Amount of Products to Display</span></div>
+							<span class="dfn-options">options: <em>any integer</em></span>
+						</div>
+						Allows to set how many products you want to display
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Columns Count</span></div>
+							<span class="dfn-options">options: <em>any integer</em></span>
+						</div>
+						Allows to set how many columns you want to display
+					</li>
+				</ul>
+				<ul class="options-list">
+					<li class="section">
+						<span class="dfn">List Options</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Amount of Products to Display</span></div>
+							<span class="dfn-options">options: <em>any integer</em></span>
+						</div>
+						Allows to set how many products you want to display
+					</li>
+				</ul>
+				<ul class="options-list">
+					<li class="section">
+						<span class="dfn">Accordion Options</span>
+					</li>
+					<li>
+						No customizable options from the admin panel 
+					</li>
+				</ul>
+				<h3>Meigee/ Social Links Widget</h3>
+					<a class="float-left m-indent" href="img/media/widget_list_opened.png" target="_blank"><img src="img/media/widget_list_closed.png" /></a>
+					<p>Allows to display social icons</p>
+					<div class="clear"></div>
+				<ul class="options-list">
+					<li class="section">
+						<span class="dfn">Socail Links Widget Options</span>
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Twitter</span></div>
+							<span class="dfn-options">options: <em>Link</em></span>
+						</div>
+						Put the link to your account. Leave empty to hide.
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">RSS</span></div>
+							<span class="dfn-options">options: <em>Link</em></span>
+						</div>
+						Put the link to your account. Leave empty to hide.
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Facebook</span></div>
+							<span class="dfn-options">options: <em>Link</em></span>
+						</div>
+						Put the link to your account. Leave empty to hide.
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Google +</span></div>
+							<span class="dfn-options">options: <em>Link</em></span>
+						</div>
+						Put the link to your account. Leave empty to hide.
+					</li>
+					<li>
+						<div class="dfn-block">
+							<div><span class="dfn_sub">Linkedin</span></div>
+							<span class="dfn-options">options: <em>Link</em></span>
+						</div>
+						Put the link to your account. Leave empty to hide.
+					</li>
+				</ul>
+			</div>
+			<div id="staticblocks" class="post last">
+				<h2 class="section-title">Static Blocks</h2>
+				Magento allows you to create blocks of content that you can use throughout your Web Store. We have created a few statics blocks to give you ability to put your own content into the most important regions of the store.
+				<h3>How to create a static block?</h3>
+				<p>Go to <span class="dfn-code">CMS/Static Blocks</span> and click the button <em>Add New Block</em> and follow steps below:</p>
+				<div class="row-colls">
+					<div class="left-coll">
+						<a href="img/media/staticblock_opened.png" target="_blank"><img src="img/media/staticblock_closed.png" /></a>
+					</div>
+					<ol>
+						<li>Enter your <em>Block Title</em></li>
+						<li>Enter block <em>Identifier</em>. List of predefined you can find below.</li>
+						<li><em>Store View</em> set as <em>All Store View</em> or specify to which store view you want a new block apply</li>
+						<li>Set <em>Status</em> as enabled to display a block in frontend</li>
+						<li>Put your content into field <em>Content</em>. Notice: You can use <a href="#widgets">Meigee Widgets</a> in any static block.</li>
+						<li>Click the button <em>Save Block</em></li>
+					</ol>
+				</div>
+				<h3>Predefined Static Blocks</h3>
+				<ol>
+					<li>
+						<span class="dfn-code">custom_product_tab_XX</span> - custom tab for products. To create additional tab for a product just create a static block called 'custom_product_tab_XX' where XX - product id, and fill it with your own additional content  <!-- <a target="_blank" href="img/media/static_custom_footer_opened.png">DEMO</a> -->
+					</li>
+					<li>
+						<span class="dfn-code">custom_product_tab2_XX</span> - second custom tab for products. To create additional tab for a product just create a static block called 'custom_product_tab2_XX' where XX - product id, and fill it with your own additional content  <!-- <a target="_blank" href="img/media/static_custom_footer_opened.png">DEMO</a> -->
+					</li>
+					<li>
+						<span class="dfn-code">cart_banner</span> - block on a product page <!-- <a target="_blank" href="img/media/static_product_custom_opened.png">DEMO</a> -->
+					</li>
+					<li>
+						<span class="dfn-code">custom_footer</span> - custom block in the footer <!-- <a target="_blank" href="img/media/static_custom_footer_opened.png">DEMO</a> -->
+					</li>
+					<li>
+						<span class="dfn-code">custom_footer_2</span> - custom block in the footer <!-- <a target="_blank" href="img/media/static_custom_footer_2_opened.png">DEMO</a> -->
+					</li>
+					<li>
+						<span class="dfn-code">likes</span>
+					</li>
+					<li>
+						<span class="dfn-code">slider_2_text_box</span>
+					</li>
+					<li>
+						<span class="dfn-code">social_links</span>
+					</li>
+				</ol>
+				<h3>Html code that is used in static blocks in the template</h3>
+				<span class="dfn-code">cart_banner</span>
+				<pre class="html">&lt;a href=&quot;#&quot;&gt;&lt;img src=&quot;{{media url=&quot;wysiwyg/cart_banner.jpg&quot;}}&quot; data-srcX2=&quot;{{media url=&quot;wysiwyg/cart_banner@x2.jpg&quot;}}&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;</pre>
+				<span class="dfn-code">custom_footer</span>
+				<pre class="html">&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed ante elit, non viverra ipsum. Nam eget arcu vitae metus venenatis feugiat. Fusce vel tortor mauris. Proin ornare turpis et mauris accumsan tempus purus. Proin ornare auris accumsan. &lt;a href=&quot;#&quot;&gt;Read More&lt;/a&gt;&lt;/p&gt;</pre>
+				<span class="dfn-code">custom_footer_2</span>
+				<pre class="html">&lt;div class=&quot;grid_3&quot;&gt;<br/>    &lt;h3&gt;Accessories&lt;/h3&gt;<br/>    &lt;div class=&quot;custom-footer-content&quot;&gt;<br/>		&lt;ul&gt;<br/>			&lt;li class=&quot;first&quot;&gt;&lt;a href=&quot;#&quot;&gt;Baby Bags&lt;/a&gt;&lt;/li&gt;<br/>			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Backpacks&lt;/a&gt;&lt;/li&gt;<br/>			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Beach Bags&lt;/a&gt;&lt;/li&gt;<br/>			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Black Handbags&lt;/a&gt;&lt;/li&gt;<br/>			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Clutches&lt;/a&gt;&lt;/li&gt;<br/>			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Cosmetic Pouches&lt;/a&gt;&lt;/li&gt;<br/>			&lt;li class=&quot;last&quot;&gt;&lt;a href=&quot;#&quot;&gt;Cross Body Bags&lt;/a&gt;&lt;/li&gt;<br/>		&lt;/ul&gt;<br/>    &lt;/div&gt;<br/>&lt;/div&gt;<br/>&lt;div class=&quot;grid_3&quot;&gt;<br/>    &lt;h3&gt;Bags&lt;/h3&gt;<br/>    &lt;div class=&quot;custom-footer-content&quot;&gt;<br/>		&lt;ul&gt;<br/>			&lt;li class=&quot;first&quot;&gt;&lt;a href=&quot;#&quot;&gt;Baby Bags&lt;/a&gt;&lt;/li&gt;<br/>			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Backpacks&lt;/a&gt;&lt;/li&gt;<br/>			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Beach Bags&lt;/a&gt;&lt;/li&gt;<br/>			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Black Handbags&lt;/a&gt;&lt;/li&gt;<br/>			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Clutches&lt;/a&gt;&lt;/li&gt;<br/>			&lt;li&gt;&lt;a href=&quot;#&quot;&gt;Cosmetic Pouches&lt;/a&gt;&lt;/li&gt;<br/>			&lt;li class=&quot;last&quot;&gt;&lt;a href=&quot;#&quot;&gt;Cross Body Bags&lt;/a&gt;&lt;/li&gt;<br/>		&lt;/ul&gt;<br/>		&lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;<br/>    &lt;/div&gt;<br/>&lt;/div&gt;<br/>&lt;div class=&quot;grid_3 omega&quot;&gt;<br/>    &lt;h3&gt;Twitter&lt;/h3&gt;<br/>    &lt;div class=&quot;custom-footer-content&quot;&gt;<br/>		&lt;div class=&quot;twits&quot;&gt;<br/>			&lt;p&gt;&lt;a href=&quot;#&quot;&gt;about 71 days&lt;/a&gt; ago Trademark - responsive magento theme with unlimited colors. Check the demo to play with colors goo.gl/BvjgF #responsive #magento #ecommerce&lt;/p&gt;<br/>			&lt;p class=&quot;last&quot;&gt;&lt;a href=&quot;#&quot;&gt;about 71 days&lt;/a&gt; ago Independent - responsive magento theme with unlimited colors goo.gl/BvjgF #responsive #magento #ecommerce&lt;/p&gt;<br/>		&lt;/div&gt;<br/>    &lt;/div&gt;<br/>&lt;/div&gt;</pre>
+				<span class="dfn-code">likes</span>
+				<pre class="html">&lt;div class=&quot;right&quot;&gt;<br/>	&lt;div id=&quot;fb-root&quot;&gt;&lt;/div&gt;<br/>	&lt;script&gt;<br/>	(function(d, s, id) {<br/>	  var js, fjs = d.getElementsByTagName(s)[0];<br/>	  if (d.getElementById(id)) return;<br/>	  js = d.createElement(s); js.id = id;<br/>	  js.src = &quot;//connect.facebook.net/en_US/all.js#xfbml=1&quot;;<br/>	  fjs.parentNode.insertBefore(js, fjs);<br/>	}(document, 'script', 'facebook-jssdk'));<br/>	&lt;/script&gt;<br/>	&lt;div class=&quot;fb-like&quot; data-send=&quot;false&quot; data-layout=&quot;button_count&quot; data-width=&quot;450&quot; data-show-faces=&quot;false&quot;&gt;&lt;/div&gt;<br/>	&lt;a href=&quot;https://twitter.com/share&quot; class=&quot;twitter-share-button&quot; data-via=&quot;meigeeteam&quot;&gt;Tweet&lt;/a&gt;<br/>	&lt;script&gt;!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=&quot;//platform.twitter.com/widgets.js&quot;;fjs.parentNode.insertBefore(js,fjs);}}(document,&quot;script&quot;,&quot;twitter-wjs&quot;);&lt;/script&gt;<br/>&lt;/div&gt;</pre>
+				<span class="dfn-code">slider_2_text_box</span>
+				<pre class="html">&lt;h2&gt;New Bag Collection&lt;/h2&gt;<br/>&lt;h3&gt;Choose Your Accessories&lt;/h3&gt;<br/>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sed ante elit, non viverra ipsum. Nam eget arcu vitae metus venenatis feugiat. Fusce vel tortor mauris. Proin ornare turpis et mauris accumsan tempus. Nunc condimentum eleifend mi, et fermentum.&lt;/p&gt;<br/>&lt;button type=&quot;button&quot; title=&quot;Details&quot; class=&quot;button btn-cart&quot; onclick=&quot;setLocation('#')&quot;&gt;&lt;span&gt;&lt;span&gt;View Details&lt;/span&gt;&lt;/span&gt;&lt;/button&gt;</pre>
+				<span class="dfn-code">social_links</span>
+				<pre class="html">{{widget type=&quot;meigeewidgets/sociallinks&quot; twitter=&quot;http://twitter.com&quot; rss=&quot;http://rss.com&quot; facebook=&quot;http://facebook.com&quot; googleplus=&quot;https://plus.google.com&quot; linkedin=&quot;http://linkedin.com&quot; youtube=&quot;http://youtube.com&quot; template=&quot;meigee/meigeewidgets/sociallinks.phtml&quot;}}</pre>
+			</div>
+			<div id="versions" class="post">
+				<h2 class="section-title">Template Versioning</h2>
+
+				<p>When you buy our template you can be sure that it will be updated to the latest version of magento after it will be <strong>released</strong> and all bugs will be fixed shortly.</p>
+				<p>We know that our clients make a tone of customization work in the template and don't want just to delete old version and use newer one or replace some of changed files. <strong>They want to implement</strong> fixes and changes into their customized template</p>
+				<p>We had a deal with it many times, so decided to impleemnt <strong>SVN</strong> into our work to get our client an ability to implement changes and fixes into their templates. Let's take a look at updating template procces</p>				
+				<h3>When to see if new version is available?</h3>
+				<div class="row-colls">
+					<img class="left-coll" src="img/media/releases.png" />
+					<p>Follow us in <a href="https://twitter.com/#!/nixdanish">tvitter</a> to get updates first.</p>
+					<p>Every release of template is accompanied with description what we done.</p>
+				</div>
+				<h3>How to learn if new version of template is available on themeforest?</h3>
+				<div class="row-colls">
+					<img class="right-coll" src="img/media/thumb_ver.png" />
+					<p>Every new version of template must be reviewed by envato staff. When it done thumbnail in template changes and you can see it on your downloads page</p>
+				</div>
+				<h3>How to learn version of your template?</h3>
+				<div class="row-colls">
+					<img class="left-coll" src="img/media/template_ver.png" />
+					<p>Just open up <span class="dfn-code">skin/frontend/meigeetheme/default/css/styles.css</span> in your favorite code editor. At the top of this file you can see a line of code with version of template (Example: <em>@template_version  1.0</em>)</p>
+				</div>
+				<h3>How to update template to the latest version?</h3>
+				<div class="row-colls">
+					<img class="right-coll" src="img/media/changes.png" />
+					<p>First of all go to your downloads page on the themeforest and download the latest version of template. <strong>We don't send files directly via email</strong>.</p>
+					<p>If you haven't done any changes in the template just replaced old version with new one.</p>
+					<p>If you have done some changes in code you should go to a folder <span class="dfn-code">changes</span> of the downloaded package where you can find <span class="dfn-code">.diff</span> files with all changes</p>
+				<a href="http://en.wikipedia.org/wiki/Diff">Wiki: Diff</a>
+				</div>
+			</div>
+			<div id="faq" class="post">
+				<h2 class="section-title">FAQ</h2>
+				<dl class="accordion">
+					<dt><a href="">How to disable links from footer</a></dt>
+					<dd>
+						<p>
+							<strong>About Us, Customer Service, Privacy Policy</strong><br />
+							<em>CMS -> Static Blocks -> Footer Links</em><br /><br />
+							<strong>Site Map</strong><br />
+							<em>System -> Configuration -> Catalog vertical tab -> Search Engine Optimizations: Autogenerated Site Map set as "disable"</em><br /><br />
+							<strong>Search Terms</strong><br />
+							<em>System -> Configuration -> Catalog vertical tab -> Search Engine Optimizations: Popular Search Terms set as "disable"</em><br /><br />
+							<strong>Advanced Searchm, Orders and Returns</strong><br />
+							<em>Open up app/design/frontend/meigeetheme/default/layout/local.xml</em>in your favorite text editor and uncomment following code<br />
+							<pre class="html">&lt;reference name=&quot;footer_links&quot;&gt;<br/>	&lt;action method=&quot;removeLinkByUrl&quot;&gt;&lt;url helper=&quot;catalogsearch/getAdvancedSearchUrl&quot;/&gt;&lt;/action&gt;<br/>	&lt;remove name=&quot;return_link&quot; /&gt;<br/>&lt;/reference&gt;</pre>
+							<strong>Contact Us</strong><br />
+							<em>System -> Configuration -> Contacts vertical tab -> Contact Us: Enable Contact Us set as "no"</em>
+						</p>
+					</dd>
+				</dl>
+			</div>
+			<div id="conclusion" class="post last">
+				<h2 class="section-title">Conclusion</h2>
+				We have done a ton of work to make our template very easy in configuring, updating and customization, please rate it (on the downloads page). Good mark will be appreciated.
+				<p>Thank you,<br />Meigee Team</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

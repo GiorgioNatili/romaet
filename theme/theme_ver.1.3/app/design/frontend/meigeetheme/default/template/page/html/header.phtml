@@ -1,0 +1,116 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<?php
+    $customlogo = MAGE::helper('ThemeOptions')->getThemeOptions('customlogo');
+?>
+
+<?php 
+/*****/
+$custompatern = MAGE::helper('ThemeOptions')->getThemeOptions('custompatern');
+$bgPatern = $paternurl = $mediaurl = "";
+$mediaurl = MAGE::helper('ThemeOptions')->getThemeOptions('mediaurl');
+if (!$custompatern):
+    $bgPatern = MAGE::helper('ThemeOptions')->getThemeOptions('patern');
+else:
+    $mediaurl = MAGE::helper('ThemeOptions')->getThemeOptions('mediaurl');
+    $paternurl = 'style="background:url('.$mediaurl.$custompatern.') center top repeat;"';
+endif;
+/*****/
+?>
+<?php 
+	$switch_class = '';
+	$isLangCurr = false;
+	if(($this->getChildHtml('store_language')) or ($this->getChildHtml('currency'))){$isLangCurr = true;}
+	$isNewsletter = false;
+	if(($this->getChildHtml('header.newsletter'))){$isNewsletter = true;}
+	if($isLangCurr == false or $isNewsletter == false){
+		$switch_class = ' three-elements';
+	}
+	if($isLangCurr == false and $isNewsletter == false){
+		$switch_class = ' two-elements';
+	}
+?>
+<header id="header">
+	<div class="header-wrapper">
+		<div class="header-wrapper-inner">
+			<div class="container_12">
+				<div class="grid_12">
+				   <?php if ($customlogo['logo_status'] == 0): ?>
+						<h1 class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>" class="logo"><img src="<?php echo $this->getLogoSrc() ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('logo'); ?> alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+						<?php else:?>
+						<h1 class="logo"><strong><?php echo $customlogo['logo_alt']; ?></strong><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $customlogo['logo_alt']; ?>" class="logo"><img src="<?php echo $mediaurl.$customlogo['logo']; ?>" <?php echo MAGE::helper('ThemeOptions/Retina')->getRetinaData('logo_custom'); ?> alt="<?php echo $customlogo['logo_alt']; ?>" /></a></h1>
+					<?php endif; ?>
+					<p class="welcome-msg"><?php echo $this->getWelcome() ?><?php echo $this->getAdditionalHtml() ?></p>
+					<div class="quick-access">
+						<div class="menu-button"><?php echo $this->__('Menu') ?></div>
+						<?php echo $this->getChildHtml('topSearch') ?>
+						<?php echo $this->getChildHtml('topMenu') ?>
+					</div>
+					<div class="clear"></div>
+					<?php echo $this->getChildHtml('topContainer'); ?>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+	<div class="header-box">
+		<?php echo $this->getChildHtml('header_slider_container') ?>
+		<div class="header-links-wrapper<?php echo ' '.$bgPatern; ?><?php echo $switch_class; ?>">
+			<div class="container_12">
+				<div class="grid_12">
+					<div class="item-link">
+						<?php echo $this->getChildHtml('topCart') ?>
+					</div>
+					<div class="item-link">
+						<?php
+							$customerName = Mage::helper('customer')->getCustomer()->getData();
+							if ($this->helper('customer')->isLoggedIn()):
+								echo '<div class="dropdown-links"><div class="item-link-shadow"></div><span class="dropdown-links-title"><span class="link-marker"></span>' . $customerName['firstname'] . '</span><span class="title-divider"><span>&nbsp;</span></span>';
+							endif;
+							echo $this->getChildHtml('topLinks');
+							if ($this->helper('customer')->isLoggedIn()):
+								echo '</div>';
+							endif; 
+						?>
+					</div>
+					<?php if($this->getChildHtml('header.newsletter')): ?>
+					<div class="item-link">
+						<?php echo $this->getChildHtml('header.newsletter') ?>
+					</div>
+					<?php endif; ?>
+					<?php if(($this->getChildHtml('store_language')) or ($this->getChildHtml('currency'))): ?>
+					<div class="item-link lang-curr<?php if((!$this->getChildHtml('store_language')) or (!$this->getChildHtml('currency'))): ?> one-item<?php endif; ?>">
+						<div class="item-link-shadow"></div>
+						<div class="block-title">
+							<div class="item-marker"></div>
+							<a><?php echo $this->__('Language and Currency') ?></a>
+						</div>
+						<div class="content-block">
+							<div class="indent">
+								<?php echo $this->getChildHtml('store_language') ?>
+								<?php if($this->getChildHtml('store_language') and  $this->getChildHtml('currency')): ?>
+									<div class="flags-divider"></div>
+								<?php endif; ?>
+								<?php echo $this->getChildHtml('currency') ?>
+								<div class="clear"></div>
+							</div>
+						</div>
+					</div>
+					<?php endif; ?>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
+</header>

@@ -1,0 +1,45 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<section class="block-subscribe newsletter-box">
+    <header>
+        <h2><?php echo $this->__('Newsletter') ?></h2>
+    </header>
+    <form action="<?php echo $this->getFormActionUrl() ?>" method="post" id="newsletter-validate-detail">
+        <div class="block-content">
+			<?php /*
+            <div class="form-subscribe-header">
+                <label for="newsletter"><?php echo $this->__('Sign Up for Our Newsletter:') ?></label>
+            </div>
+			*/ ?>
+			<div class="input-box">
+               <input type="text" name="firstname" id="firstname" title="<?php echo $this->__('Inserisci nome...') ?>" class="input-text required-entry" />
+            </div>
+			<div class="input-box">
+               <input type="text" name="lastname" id="lastname" title="<?php echo $this->__('Inserisci cognome...') ?>" class="input-text required-entry" />
+            </div>
+            <div class="input-box">
+               <input type="text" name="email" id="newsletter" title="<?php echo $this->__('Inserisci indirizzo mail...') ?>" class="input-text required-entry validate-email" />
+            </div>
+			<div class="input-box">
+				<select class="selectbox">
+					<option>seleziona lingua...</option>
+				</select>
+            </div>			
+            <div class="actions">
+                <button type="submit" title="<?php echo $this->__('ISCRIVIMI ALLA NEWSLETTER') ?>" class="button"><span><span><?php echo $this->__('ISCRIVIMI ALLA NEWSLETTER') ?></span></span></button>
+            </div>
+        </div>
+    </form>
+    <script type="text/javascript">
+    //<![CDATA[
+        var newsletterSubscriberFormDetail = new VarienForm('newsletter-validate-detail');
+    //]]>
+    </script>
+</section>

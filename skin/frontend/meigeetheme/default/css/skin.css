@@ -1,0 +1,181 @@
+/**
+ * Skin
+ */
+
+/*======Skin Images ======*/
+
+
+
+/*======Site Bg=======*/
+.content-wrapper,
+.blocks-wrapper-2 header#header .header-links-wrapper{background-color:#f7f7f7;}
+
+header#header .header-wrapper{background-image:url(../images/media/header_wrapper_bg.jpg);}
+
+.box-wrapper{background-color:#f5f5f5;}
+
+
+
+/*======Skin Color #1=======*/
+a:hover,
+.price,
+.block-account li strong,
+.product-name a:hover,
+.catalog-product-view .box-reviews .full-review,
+.opc .step h4,
+.small-slider .home-slider-conainer .prev:hover,
+.small-slider .home-slider-conainer .next:hover,
+.slider-2 .slider-text-box h3{color:#e94645;}
+
+
+.block-account li:hover span.marker,
+.block-account li.current span.marker,
+#nav > li.over,
+#nav > li.active,
+.sidebar-category,
+#categories-accordion li.level-top.parent .btn-cat.closed,
+.block-layered-nav dl#layered_navigation_accordion dt.closed .btn-nav,
+aside.sidebar section:first-child .sidebar-shadow,
+.block-wishlist .prev:hover,
+.block-wishlist .next:hover,
+.sorter .view-mode strong.list,
+.sorter .view-mode a.list:hover,
+.sorter .view-mode strong.grid,
+.sorter .view-mode a.grid:hover,
+.sorter .sort-by a,
+.sorter .pages li a.i-next,
+.sorter .pages li a.i-previous,
+.sorter .pages .current,
+.sorter .pages li a:hover,
+.products-list .add-to-links li a,
+.product-view .product-shop .product-bottom-box .add-to-links li a,
+.product-view .product-shop .product-bottom-box .email-friend,
+.cart-table .cart-edit:hover,
+.cart-table .link-wishlist:hover,
+.cart-table .btn-remove2:hover,
+.my-wishlist .data-table .btn-remove2:hover,
+.my-wishlist .link-edit:hover,
+.cart-table button.button:hover span,
+.my-wishlist .buttons-set button.button:hover span,
+.cart-table button.btn-continue span,
+.my-account .my-wishlist .buttons-set button.btn-update span,
+.cart .shipping button.button span,
+.cart .discount button.button span,
+.my-wishlist input.quantity-decrease:hover,
+.my-wishlist input.quantity-increase:hover,
+.add-to-cart input.quantity-decrease:hover,
+.add-to-cart input.quantity-increase:hover,
+.cart-table input.quantity-decrease:hover,
+.cart-table input.quantity-increase:hover,
+.cart .totals-title,
+#toTop,
+.opc .active .step-title,
+.account-login .login-page-box .content .buttons-set button span,
+.small-slider .small-slider-text-box .price-box,
+header#header .menu-button,
+aside.sidebar section.active header .sidebar-block-button,
+aside.sidebar section.block-layered-nav .btn-remove,
+#nav ul li.touched,
+#nav ul li.over,
+#nav ul li.active,
+#nav ul,
+#nav div{background-color:#e94645;}
+
+
+.nav-wide#nav ul.level0,
+.nav-wide#nav .static-wrapper,
+.my-wishlist input.quantity-decrease:hover,
+.my-wishlist input.quantity-increase:hover,
+.add-to-cart input.quantity-decrease:hover,
+.add-to-cart input.quantity-increase:hover,
+.cart-table input.quantity-decrease:hover,
+.cart-table input.quantity-increase:hover,
+#nav ul,
+#nav div{
+	background-color:rgba(233, 70, 69, 0.9);
+}
+
+
+@media only screen and (max-width: 767px){
+	header#header .nav-container > ul{
+		background-color:rgba(233, 70, 69, 0.9);
+	}
+}
+
+
+/*======Skin Color #2=======*/
+#footer .twits p a,
+#footer .footer-columns-block .custom_footer p a{color:#008C1F;}
+
+.block-account li span.marker,
+button.button span,
+#footer .footer-wrapper,
+#footer .footer-indent li a:hover,
+#footer .footer-wrapper .footer-columns-block ul li a:hover,
+.sidebar button.button:hover > span,
+aside.sidebar .block-reorder .actions a:hover,
+aside.sidebar .block-wishlist .actions a:hover,
+aside.sidebar .block-tags .actions a:hover,
+aside.sidebar .block-compare .actions a:hover,
+.sorter .sort-by a:hover,
+.sorter .pages li a.i-next:hover,
+.sorter .pages li a.i-previous:hover,
+.products-list .add-to-links li a:hover,
+.product-view .product-shop .product-bottom-box .add-to-links li a:hover,
+.product-view .product-shop .product-bottom-box .email-friend:hover,
+.meigee-tabs,
+.catalog-product-view .box-reviews .data-table thead,
+.cart-table .cart-edit,
+.cart-table .link-wishlist,
+.cart-table .btn-remove2,
+.my-wishlist .data-table .btn-remove2,
+.my-wishlist .link-edit,
+.my-wishlist input.quantity-decrease,
+.my-wishlist input.quantity-increase,
+.add-to-cart input.quantity-decrease,
+.add-to-cart input.quantity-increase,
+.cart-table input.quantity-decrease,
+.cart-table input.quantity-increase,
+#toTopHover,
+.block-related .prev,
+.block-related .next,
+.product-view .product-prev,
+.product-view .product-next,
+.more-views .prev,
+.more-views .next,
+.slider-container .prev,
+.slider-container .next,
+.header-slider-container .next,
+.header-slider-container .prev{background-color:#008c1f; }
+
+.my-wishlist input.quantity-decrease,
+.my-wishlist input.quantity-increase,
+.add-to-cart input.quantity-decrease,
+.add-to-cart input.quantity-increase,
+.cart-table input.quantity-decrease,
+.cart-table input.quantity-increase,
+header#header .top-cart .block-title,
+header#header .top-cart .block-content{
+	background-color:rgba(62, 156, 133, 0.8);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#cc3e9c85,endColorstr=#cc3e9c85);
+	zoom: 1;
+}
+
+.header-slider-container .next,
+.header-slider-container .prev,
+.slider-container .prev,
+.slider-container .next,
+.more-views .prev,
+.more-views .next,
+.product-view .product-prev,
+.product-view .product-next,
+.block-related .prev,
+.block-related .next{
+	background-color:rgba(62, 156, 133, 0.8);
+}
+
+
+/**
+ * Skin
+ */
+

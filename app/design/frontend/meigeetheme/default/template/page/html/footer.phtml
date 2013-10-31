@@ -1,0 +1,53 @@
+<?php
+/**
+ * Magento
+ *
+ * @category    design
+ * @package     meigeetheme_default
+ * @copyright   Copyright (c) 2012 MeigeeTeam. (http://www.meigeeteam.com)
+ */
+?>
+<footer id="footer">
+	<div class="footer-wrapper">
+		<div class="footer-blocks-wrapper">
+			<div class="footer-blocks-shadow">
+				<div class="container_12">
+					<div class="grid_12">
+						<div class="footer-columns-block">
+							<div class="grid_3 alpha">
+								<a href="#" class="footer-logo"></a>
+								<?php /* // Predefined Static Block
+								if ($static_html = $this->getChildHtml('social_links')):
+									echo $static_html;
+								endif; */ ?>
+								<?php // Predefined Static Block
+								if ($static_html = $this->getChildHtml('custom_footer')):
+									echo '<div class="custom_footer">'.$static_html.'</div>';
+								endif; ?>
+							</div>
+							<?php // Predefined Static Block
+							if ($static_html = $this->getChildHtml('custom_footer_2')):
+								echo $static_html;
+							endif; ?>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="container_12">
+        <div class="grid_12">
+			<div class="footer-indent">
+				<?php echo $this->getChildHtml('cms_footer_links') ?>
+				<?php //echo $this->getChildHtml('footer_links') ?>
+				<address><?php echo $this->getCopyright() ?></address>
+				<div class="clear"></div>
+				<?php if ($this->getChildHtml('store_switcher')) echo $this->getChildHtml('store_switcher') . '<div class="clear"></div>' ?>
+				
+			</div>
+        </div>
+        <div class="clear"></div>
+    </div>        
+</footer>

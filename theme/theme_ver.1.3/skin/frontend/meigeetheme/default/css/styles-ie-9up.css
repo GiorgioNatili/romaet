@@ -1,0 +1,91 @@
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_blank
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+ 
+ /* Styles for IE9 +  */
+
+/* Gradient Filter Clear */
+.nav-wide#nav ul li.touched > a,
+.nav-wide#nav ul li.over > a,
+.nav-wide#nav ul li.active > a,
+.block-related .next:hover,
+.block-related .prev:hover,
+.block-related .prev,
+.block-related .next,
+.block-related .prev:hover,
+.block-related .next:hover,
+.meigee-tabs a:hover,
+.my-wishlist input.quantity-decrease,
+.my-wishlist input.quantity-increase,
+.add-to-cart input.quantity-decrease,
+.add-to-cart input.quantity-increase,
+.cart-table input.quantity-decrease,
+.cart-table input.quantity-increase,
+.my-wishlist input.quantity-decrease:hover,
+.my-wishlist input.quantity-increase:hover,
+.add-to-cart input.quantity-decrease:hover,
+.add-to-cart input.quantity-increase:hover,
+.cart-table input.quantity-decrease:hover,
+.cart-table input.quantity-increase:hover,
+.product-view .product-prev,
+.product-view .product-next,
+.product-view .product-prev:hover,
+.product-view .product-next:hover,
+.more-views .prev,
+.more-views .next,
+.more-views .prev:hover,
+.more-views .next:hover,
+header#header .header-links-wrapper .block-subscribe .block-title,
+header#header .header-links-wrapper .block-subscribe .content-block,
+header#header .dropdown-links.active .title-divider span,
+header#header .form-language .lang-wrapper a:hover,
+header#header .form-currency .lang-wrapper a:hover,
+header#header .form-language .lang-wrapper,
+header#header .form-currency .lang-wrapper,
+header#header .flags-divider,
+header#header .header-links-wrapper .lang-curr .block-title,
+header#header .header-links-wrapper .lang-curr .content-block,
+header#header .links li a.top-link-login,
+header#header .links li a.top-link-logout,
+header#header .top-cart .block-title,
+header#header .top-cart .block-content,
+#nav ul li.over,
+#nav ul li.active,
+#nav ul,
+#nav div,
+header#header .header-wrapper .header-wrapper-inner{
+	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(enabled=false)";
+}
+
+
+
+header#header .dropdown-links:hover,
+header#header .dropdown-links.active,
+header#header .dropdown-links:hover ul.links,
+header#header .dropdown-links.active ul.links{
+	-ms-filter:"progid:DXImageTransform.Microsoft.gradient(enabled=false)";
+}
+
+
+
